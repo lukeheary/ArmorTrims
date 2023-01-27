@@ -1,0 +1,13 @@
+{
+    "Coast": "assets/smithing-templates/coast.png",
+    "Dune": "assets/smithing-templates/dune.png",
+    "Eye": "assets/smithing-templates/eye.png",
+    "Rib": "assets/smithing-templates/rib.png",
+    "Sentry": "assets/smithing-templates/sentry.png",
+    "Snout": "assets/smithing-templates/snout.png",
+    "Spire": "assets/smithing-templates/spire.png",
+    "Tide": "assets/smithing-templates/tide.png",
+    "Vex": "assets/smithing-templates/vex.png",
+    "Ward": "assets/smithing-templates/ward.png",
+    "Wild": "assets/smithing-templates/wild.png"
+}

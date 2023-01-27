@@ -1,0 +1,12 @@
+{
+    "amethyst_shard": "assets/trim-materials/amethyst_shard.png",
+    "copper_ingot": "assets/trim-materials/copper_ingot.png",
+    "diamond": "assets/trim-materials/diamond.png",
+    "emerald": "assets/trim-materials/emerald.png",
+    "gold_ingot": "assets/trim-materials/gold_ingot.png",
+    "iron_ingot": "assets/trim-materials/iron_ingot.png",
+    "lapis_lazuli": "assets/trim-materials/lapis_lazuli.png",
+    "nether_quartz": "assets/trim-materials/nether_quartz.png",
+    "netherite_ingot": "assets/trim-materials/netherite_ingot.png",
+    "redstone_dust": "assets/trim-materials/redstone_dust.png"
+}

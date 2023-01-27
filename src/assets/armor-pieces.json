@@ -1,0 +1,31 @@
+{
+    "helmet": {
+        "chainmail": "assets/armor-pieces/chainmail_helmet.png",
+        "diamond": "assets/armor-pieces/diamond_helmet.png",
+        "golden": "assets/armor-pieces/golden_helmet.png",
+        "iron": "assets/armor-pieces/iron_helmet.png",
+        "netherite": "assets/armor-pieces/netherite_helmet.png",
+        "turtle": "assets/armor-pieces/turtle_shell.png"
+    },
+    "chestplate": {
+        "chainmail": "assets/armor-pieces/chainmail_chestplate.png",
+        "diamond": "assets/armor-pieces/diamond_chestplate.png",
+        "golden": "assets/armor-pieces/golden_chestplate.png",
+        "iron": "assets/armor-pieces/iron_chestplate.png",
+        "netherite": "assets/armor-pieces/netherite_chestplate.png"
+    },
+    "leggings": {
+        "chainmail": "assets/armor-pieces/chainmail_leggings.png",
+        "diamond": "assets/armor-pieces/diamond_leggings.png",
+        "golden": "assets/armor-pieces/golden_leggings.png",
+        "iron": "assets/armor-pieces/iron_leggings.png",
+        "netherite": "assets/armor-pieces/netherite_leggings.png"
+    },
+    "boots": {
+        "chainmail": "assets/armor-pieces/chainmail_boots.png",
+        "diamond": "assets/armor-pieces/diamond_boots.png",
+        "golden": "assets/armor-pieces/golden_boots.png",
+        "iron": "assets/armor-pieces/iron_boots.png",
+        "netherite": "assets/armor-pieces/netherite_boots.png,"
+    }
+}
