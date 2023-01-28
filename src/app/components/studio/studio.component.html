@@ -38,6 +38,21 @@
                     </div>
                     <!-- END HELMET MATERIAL MENU -->
 
+                    <!-- TRIM MATERIAL MENU -->
+                    <div id = 'trimMaterialMenu' class="hidden drop-shadow-2xl">
+                        <div class="bg-white border-2 border-gray-200 rounded-xl z-20 md:w-[550px] flex flex-wrap justify-around p-4">
+                            <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
+                                <div class="my-2 text-center" (click)='clickOption(trimMaterial.key, "trimMaterial")'> 
+                                    <div>
+                                        <img src = '{{ trimMaterial.value }}' class="h-20 w-20 mx-3 p-3 bg-white transition duration-250 hover:drop-shadow-md cursor-pointer border-2 border-gray-200 rounded-xl"/>
+                                    </div>
+                                    {{ trimMaterial.key }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END TRIM MATERIAL MENU -->
+
                     <!-- HELMET OPTIONS -->
                     <div>Helmet</div>
                     <div id="headOptions" class=" w-full inline-flex justify-around">
@@ -49,13 +64,14 @@
 
                         <!-- HELMET -->
                         <div class="h-32 w-24 bg-white">
-                            <img id="helmetMaterialImage" src='assets/smithing-templates/none.png' class="h-24 w-24 p-2 border-2 border-gray-200 rounded-xl cursor-pointer" (click)='openMenu("helmetMaterialMenu")'/>
+                            <img id="helmetMaterialImage" src='assets/smithing-templates/none.png' class="h-24 w-24 p-4 border-2 border-gray-200 rounded-xl cursor-pointer" (click)='openMenu("helmetMaterialMenu")'/>
                             <div id='helmetMaterialText' class="h-8 my-auto justify-center align-middle text-center text-sm pt-1"></div>
                         </div>
 
                         <!-- TRIM MATERIAL -->
                         <div class="h-32 w-24 bg-white">
-    
+                            <img id="trimMaterialImage" src='assets/smithing-templates/none.png' class="h-24 w-24 p-4 border-2 border-gray-200 rounded-xl cursor-pointer" (click)='openMenu("trimMaterialMenu")'/>
+                            <div id='trimMaterialText' class="h-8 my-auto justify-center align-middle text-center text-sm pt-1"></div>
                         </div>
                     </div>
                 </div>

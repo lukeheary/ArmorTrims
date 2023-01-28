@@ -116,7 +116,8 @@ export class StudioComponent implements OnInit {
   setMenuList() {
     let smithingTemplateMenu = document.getElementById('smithingTemplateMenu'); 
     let helmetMaterialMenu = document.getElementById('helmetMaterialMenu'); 
-    this.menuList = [smithingTemplateMenu!, helmetMaterialMenu!];
+    let trimMaterialMenu = document.getElementById('trimMaterialMenu'); 
+    this.menuList = [smithingTemplateMenu!, helmetMaterialMenu!, trimMaterialMenu!];
   }
   
   closeMenu(event:Event) {
@@ -135,12 +136,17 @@ export class StudioComponent implements OnInit {
     let text = document.getElementById(type + "Text");
     let templateAsset = '';
 
+    console.log(option, type, image, text)
+
     switch(type) {
       case 'smithingTemplate':
         templateAsset = this.smithingTemplates.get(option)!;
         break;
       case 'helmetMaterial':
         templateAsset = this.helmetAssets.get(option)!;
+        break;
+      case 'trimMaterial':
+        templateAsset = this.trimMaterials.get(option)!;
         break;
     }
 
