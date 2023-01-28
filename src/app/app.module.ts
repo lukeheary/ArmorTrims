@@ -8,7 +8,7 @@ import { StudioComponent } from './components/studio/studio.component';
 @NgModule({
   declarations: [
     AppComponent,
-    StudioComponent
+    StudioComponent,
   ],
   imports: [
     BrowserModule,

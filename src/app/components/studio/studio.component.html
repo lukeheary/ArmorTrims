@@ -1,132 +1,306 @@
 <div class="wrapper h-screen w-screen flex" (click) = "closeMenu($event)">
-    <div class="studio h-4/5 sm:w-[1100px] w-screen mx-auto my-auto bg-blue-400 flex flex-col md:flex-row">
-        <div class="image bg-green-400 md:h-full h-[500px] md:w-[550px]">
+    <div class="studio h-4/5 sm:w-[1100px] w-screen mx-auto my-auto  flex flex-col md:flex-row">
+        <div class="image bg-green-400 md:h-162 h-[500px] md:w-[550px]">
 
         </div>
-        <div class="options bg-green-100 h-full md:w-[550px]">
-            <div id="optionsContainer" class="flex flex-col h-full justify-around">
+        <div class="options  h-162 md:w-[550px]">
+            <div id="optionsContainer" class="flex flex-col h-full justify-center">
 
-                <div id="headOptionsContainer">
-
-                    <!-- TEMPLATE MENU -->
-                    <div id = 'smithingTemplateMenu' class="hidden drop-shadow-2xl">
-                        <div class="bg-white border-2 border-gray-200 rounded-xl z-20 md:w-[550px] flex flex-wrap justify-around p-4">
+                <!-- HELMET SMITHING TEMPLATE MENU -->
+                <div id = 'smithingTemplateHelmetMenu' class="menu-shadow">
+                    <div class="menu">
+                    <div class="menu-label">Smithing Templates</div> 
+                        <div class="menu-options-container">
                             <div *ngFor = 'let template of smithingTemplates | keyvalue'>
-                                <div class="my-2 text-center" (click)='clickOption(template.key, "smithingTemplate")'> 
+                                <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateHelmet")'> 
                                     <div>
-                                        <img src = '{{ template.value }}' class="h-20 w-20 mx-3 p-2 bg-white transition duration-250 hover:drop-shadow-md cursor-pointer border-2 border-gray-200 rounded-xl"/>
+                                        <img src = '{{ template.value }}' class="menu-option-image"/>
                                     </div>
                                     {{ template.key }}
                                 </div>
-                            </div>
+                            </div>                           
                         </div>
                     </div>
-                    <!-- END TEMPLATE MENU -->
-
-                    <!-- HELMET MATERIAL MENU -->
-                    <div id = 'helmetMaterialMenu' class="hidden drop-shadow-2xl">
-                        <div class="bg-white border-2 border-gray-200 rounded-xl z-20 md:w-[550px] flex flex-wrap justify-around p-4">
-                            <div *ngFor = 'let helmet of helmetAssets | keyvalue'>
-                                <div class="my-2 text-center" (click)='clickOption(helmet.key, "helmetMaterial")'> 
+                </div>
+                <!-- CHESTPLATE SMITHING TEMPLATE MENU -->
+                <div id = 'smithingTemplateChestplateMenu' class="menu-shadow">
+                    <div class="menu">
+                    <div class="menu-label">Smithing Templates</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let template of smithingTemplates | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateChestplate")'> 
                                     <div>
-                                        <img src = '{{ helmet.value }}' class="h-20 w-20 mx-3 p-3 bg-white transition duration-250 hover:drop-shadow-md cursor-pointer border-2 border-gray-200 rounded-xl"/>
+                                        <img src = '{{ template.value }}' class="menu-option-image"/>
+                                    </div>
+                                    {{ template.key }}
+                                </div>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+                <!-- LEGGINGS SMITHING TEMPLATE MENU -->
+                <div id = 'smithingTemplateLeggingsMenu' class="menu-shadow">
+                    <div class="menu">
+                    <div class="menu-label">Smithing Templates</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let template of smithingTemplates | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateLeggings")'> 
+                                    <div>
+                                        <img src = '{{ template.value }}' class="menu-option-image"/>
+                                    </div>
+                                    {{ template.key }}
+                                </div>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+                <!-- BOOTS SMITHING TEMPLATE MENU -->
+                <div id = 'smithingTemplateBootsMenu' class="menu-shadow">
+                    <div class="menu">
+                    <div class="menu-label">Smithing Templates</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let template of smithingTemplates | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateBoots")'> 
+                                    <div>
+                                        <img src = '{{ template.value }}' class="menu-option-image"/>
+                                    </div>
+                                    {{ template.key }}
+                                </div>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HELMET MATERIAL MENU -->
+                <div id = 'helmetMaterialMenu' class="menu-shadow">
+                    <div class="menu">
+                        <div class="menu-label">Helmet Materials</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let helmet of helmetAssets | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(helmet.key, "helmetMaterial")'> 
+                                    <div>
+                                        <img src = '{{ helmet.value }}' class="menu-option-image"/>
                                     </div>
                                     {{ helmet.key }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- END HELMET MATERIAL MENU -->
-
-                    <!-- TRIM MATERIAL MENU -->
-                    <div id = 'trimMaterialMenu' class="hidden drop-shadow-2xl">
-                        <div class="bg-white border-2 border-gray-200 rounded-xl z-20 md:w-[550px] flex flex-wrap justify-around p-4">
-                            <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
-                                <div class="my-2 text-center" (click)='clickOption(trimMaterial.key, "trimMaterial")'> 
+                </div>
+                <!-- CHESTPLATE MATERIAL MENU -->
+                <div id = 'chestplateMaterialMenu' class="menu-shadow">
+                    <div class="menu">
+                        <div class="menu-label">Chestplate Materials</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let chestplate of chestplateAssets | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(chestplate.key, "chestplateMaterial")'> 
                                     <div>
-                                        <img src = '{{ trimMaterial.value }}' class="h-20 w-20 mx-3 p-3 bg-white transition duration-250 hover:drop-shadow-md cursor-pointer border-2 border-gray-200 rounded-xl"/>
+                                        <img src = '{{ chestplate.value }}' class="menu-option-image"/>
+                                    </div>
+                                    {{ chestplate.key }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- LEGGINGS MATERIAL MENU -->
+                <div id = 'leggingsMaterialMenu' class="menu-shadow">
+                    <div class="menu">
+                        <div class="menu-label">Leggings Materials</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let leggings of leggingsAssets | keyvalue'>
+                                <div class="my-2 text-center" (click)='clickOption(leggings.key, "leggingsMaterial")'> 
+                                    <div>
+                                        <img src = '{{ leggings.value }}' class="menu-option-image"/>
+                                    </div>
+                                    {{ leggings.key }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- BOOTS MATERIAL MENU -->
+                <div id = 'bootsMaterialMenu' class="menu-shadow">
+                    <div class="menu">
+                        <div class="menu-label">Boots Materials</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let boots of bootsAssets | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(boots.key, "bootsMaterial")'> 
+                                    <div>
+                                        <img src = '{{ boots.value }}' class="menu-option-image"/>
+                                    </div>
+                                    {{ boots.key }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HELMET TRIM MATERIAL MENU -->
+                <div id = 'trimMaterialHelmetMenu' class="menu-shadow">
+                    <div class="menu">
+                        <div class="menu-label">Trim Materials</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialHelmet")'> 
+                                    <div>
+                                        <img src = '{{ trimMaterial.value }}' class="menu-option-image"/>
                                     </div>
                                     {{ trimMaterial.key }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- END TRIM MATERIAL MENU -->
+                </div>
+                <!-- CHESTPLATE TRIM MATERIAL MENU -->
+                <div id = 'trimMaterialChestplateMenu' class="menu-shadow">
+                    <div class="menu">
+                        <div class="menu-label">Trim Materials</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialChestplate")'> 
+                                    <div>
+                                        <img src = '{{ trimMaterial.value }}' class="menu-option-image"/>
+                                    </div>
+                                    {{ trimMaterial.key }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- LEGGINGS TRIM MATERIAL MENU -->
+                <div id = 'trimMaterialLeggingsMenu' class="menu-shadow">
+                    <div class="menu">
+                        <div class="menu-label">Trim Materials</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialLeggings")'> 
+                                    <div>
+                                        <img src = '{{ trimMaterial.value }}' class="menu-option-image"/>
+                                    </div>
+                                    {{ trimMaterial.key }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- BOOTS TRIM MATERIAL MENU -->
+                <div id = 'trimMaterialBootsMenu' class="menu-shadow">
+                    <div class="menu">
+                        <div class="menu-label">Trim Materials</div> 
+                        <div class="menu-options-container">
+                            <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
+                                <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialBoots")'> 
+                                    <div>
+                                        <img src = '{{ trimMaterial.value }}' class="menu-option-image"/>
+                                    </div>
+                                    {{ trimMaterial.key }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- HELMET OPTIONS -->
+
+
+
+
+                <!-- HELMET BUTTONS -->
+                <div id="headOptionsContainer">
                     <div>Helmet</div>
-                    <div id="headOptions" class=" w-full inline-flex justify-around">
+                    <div id="headOptions" class="button-container">
                         <!-- TEMPLATE -->
-                        <div class="h-32 w-24 bg-white">
-                            <img id="smithingTemplateImage" src='assets/smithing-templates/none.png' class="h-24 w-24 p-4 border-2 border-gray-200 rounded-xl cursor-pointer" (click)='openMenu("smithingTemplateMenu")'/>
-                            <div id='smithingTemplateText' class="h-8 my-auto justify-center align-middle text-center text-sm pt-1"></div>
+                        <div class="button button-left">
+                            <img id="smithingTemplateHelmetImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("smithingTemplateHelmetMenu")'/>
+                            <div id='smithingTemplateHelmetText' class="button-text"></div>
                         </div>
 
                         <!-- HELMET -->
-                        <div class="h-32 w-24 bg-white">
-                            <img id="helmetMaterialImage" src='assets/smithing-templates/none.png' class="h-24 w-24 p-4 border-2 border-gray-200 rounded-xl cursor-pointer" (click)='openMenu("helmetMaterialMenu")'/>
-                            <div id='helmetMaterialText' class="h-8 my-auto justify-center align-middle text-center text-sm pt-1"></div>
+                        <div class="button">
+                            <img id="helmetMaterialImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("helmetMaterialMenu")'/>
+                            <div id='helmetMaterialText' class="button-text"></div>
                         </div>
 
                         <!-- TRIM MATERIAL -->
-                        <div class="h-32 w-24 bg-white">
-                            <img id="trimMaterialImage" src='assets/smithing-templates/none.png' class="h-24 w-24 p-4 border-2 border-gray-200 rounded-xl cursor-pointer" (click)='openMenu("trimMaterialMenu")'/>
-                            <div id='trimMaterialText' class="h-8 my-auto justify-center align-middle text-center text-sm pt-1"></div>
+                        <div class="button button-right">
+                            <img id="trimMaterialHelmetImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("trimMaterialHelmetMenu")'/>
+                            <div id='trimMaterialHelmetText' class="button-text"></div>
                         </div>
                     </div>
                 </div>
-                <!-- END HELMET TEMPLATE OPTIONS -->
 
-
-                <div id="headOptionsContainer">
+                <!-- CHESTPLATE BUTTONS -->
+                <div id="chestplateOptionsContainer">
                     <div>Chestplate</div>
-                    <div id="headOptions" class="bg-blue-200 w-full inline-flex justify-around">
-                        <div class="h-32 w-24 bg-white">
-    
+                    <div id="chestplateOptions" class="button-container">
+                        <!-- TEMPLATE -->
+                        <div class="button button-left">
+                            <img id="smithingTemplateChestplateImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("smithingTemplateChestplateMenu")'/>
+                            <div id='smithingTemplateChestplateText' class="button-text"></div>
                         </div>
-                        <div class="h-32 w-24 bg-white">
-    
+
+                        <!-- HELMET -->
+                        <div class="button">
+                            <img id="chestplateMaterialImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("chestplateMaterialMenu")'/>
+                            <div id='chestplateMaterialText' class="button-text"></div>
                         </div>
-                        <div class="h-32 w-24 bg-white">
-    
+
+                        <!-- TRIM MATERIAL -->
+                        <div class="button button-right">
+                            <img id="trimMaterialChestplateImage" class="button-image"  src='assets/smithing-templates/none.png' (click)='openMenu("trimMaterialChestplateMenu")'/>
+                            <div id='trimMaterialChestplateText' class="button-text"></div>
                         </div>
                     </div>
                 </div>
 
-                <div id="headOptionsContainer">
+                <!-- LEGGINGS BUTTONS -->
+                <div id="leggingsOptionsContainer">
                     <div>Leggings</div>
-                    <div id="headOptions" class="bg-blue-200 w-full inline-flex justify-around">
-                        <div class="h-32 w-24 bg-white">
-    
+                    <div id="headOptions" class="button-container">
+                        <!-- TEMPLATE -->
+                        <div class="button button-left">
+                            <img id="smithingTemplateLeggingsImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("smithingTemplateLeggingsMenu")'/>
+                            <div id='smithingTemplateLeggingsText' class="button-text"></div>
                         </div>
-                        <div class="h-32 w-24 bg-white">
-    
+
+                        <!-- HELMET -->
+                        <div class="button">
+                            <img id="leggingsMaterialImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("leggingsMaterialMenu")'/>
+                            <div id='leggingsMaterialText' class="button-text"></div>
                         </div>
-                        <div class="h-32 w-24 bg-white">
-    
+
+                        <!-- TRIM MATERIAL -->
+                        <div class="button button-right">
+                            <img id="trimMaterialLeggingsImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("trimMaterialLeggingsMenu")'/>
+                            <div id='trimMaterialLeggingsText' class="button-text"></div>
                         </div>
                     </div>
                 </div>
 
+                <!-- BOOTS BUTTONS -->
                 <div id="headOptionsContainer">
                     <div>Boots</div>
-                    <div id="headOptions" class="bg-blue-200 w-full inline-flex justify-around">
-                        <div class="h-32 w-24 bg-white">
-    
+                    <div id="bootsOptions" class="button-container">
+                        <!-- TEMPLATE -->
+                        <div class="button button-left">
+                            <img id="smithingTemplateBootsImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("smithingTemplateBootsMenu")'/>
+                            <div id='smithingTemplateBootsText' class="button-text"></div>
                         </div>
-                        <div class="h-32 w-24 bg-white">
-    
+
+                        <!-- HELMET -->
+                        <div class="button">
+                            <img id="bootsMaterialImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("bootsMaterialMenu")'/>
+                            <div id='bootsMaterialText' class="button-text"></div>
                         </div>
-                        <div class="h-32 w-24 bg-white">
-    
+
+                        <!-- TRIM MATERIAL -->
+                        <div class="button button-right">
+                            <img id="trimMaterialBootsImage" class="button-image" src='assets/smithing-templates/none.png' (click)='openMenu("trimMaterialBootsMenu")'/>
+                            <div id='trimMaterialBootsText' class="button-text"></div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
-
-
     </div>
 </div>

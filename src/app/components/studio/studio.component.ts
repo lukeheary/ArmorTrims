@@ -114,10 +114,35 @@ export class StudioComponent implements OnInit {
   }
 
   setMenuList() {
-    let smithingTemplateMenu = document.getElementById('smithingTemplateMenu'); 
+    let smithingTemplateMenu_Helmet = document.getElementById('smithingTemplateHelmetMenu'); 
+    let smithingTemplateMenu_Chestplate = document.getElementById('smithingTemplateChestplateMenu'); 
+    let smithingTemplateMenu_Leggings = document.getElementById('smithingTemplateLeggingsMenu'); 
+    let smithingTemplateMenu_Boots = document.getElementById('smithingTemplateBootsMenu'); 
+
     let helmetMaterialMenu = document.getElementById('helmetMaterialMenu'); 
-    let trimMaterialMenu = document.getElementById('trimMaterialMenu'); 
-    this.menuList = [smithingTemplateMenu!, helmetMaterialMenu!, trimMaterialMenu!];
+    let chestplateMaterialMenu = document.getElementById('chestplateMaterialMenu'); 
+    let leggingsMaterialMenu = document.getElementById('leggingsMaterialMenu'); 
+    let bootsMaterialMenu = document.getElementById('bootsMaterialMenu'); 
+
+    let trimMaterialHelmetMenu = document.getElementById('trimMaterialHelmetMenu'); 
+    let trimMaterialChestplateMenu = document.getElementById('trimMaterialChestplateMenu'); 
+    let trimMaterialLeggingsMenu = document.getElementById('trimMaterialLeggingsMenu'); 
+    let trimMaterialBootsMenu = document.getElementById('trimMaterialBootsMenu'); 
+
+    this.menuList = [
+      smithingTemplateMenu_Helmet!, 
+      smithingTemplateMenu_Chestplate!, 
+      smithingTemplateMenu_Leggings!,
+      smithingTemplateMenu_Boots!,
+      helmetMaterialMenu!,
+      trimMaterialHelmetMenu!, 
+      trimMaterialChestplateMenu!,
+      trimMaterialLeggingsMenu!,
+      trimMaterialBootsMenu!,
+      chestplateMaterialMenu!, 
+      leggingsMaterialMenu!, 
+      bootsMaterialMenu!, 
+      ];
   }
   
   closeMenu(event:Event) {
@@ -136,17 +161,27 @@ export class StudioComponent implements OnInit {
     let text = document.getElementById(type + "Text");
     let templateAsset = '';
 
-    console.log(option, type, image, text)
+
+    if (type.startsWith('smithingTemplate')) {
+      templateAsset = this.smithingTemplates.get(option)!;
+    }
+
+    if (type.startsWith('trimMaterial')) {
+      templateAsset = this.trimMaterials.get(option)!;
+    }
 
     switch(type) {
-      case 'smithingTemplate':
-        templateAsset = this.smithingTemplates.get(option)!;
-        break;
       case 'helmetMaterial':
         templateAsset = this.helmetAssets.get(option)!;
         break;
-      case 'trimMaterial':
-        templateAsset = this.trimMaterials.get(option)!;
+      case 'chestplateMaterial':
+        templateAsset = this.chestplateAssets.get(option)!;
+        break;
+      case 'leggingsMaterial':
+        templateAsset = this.leggingsAssets.get(option)!;
+        break;
+      case 'bootsMaterial':
+        templateAsset = this.bootsAssets.get(option)!;
         break;
     }
 

@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.w-125 {
+  width: 400px;
+}
+
+@layer components {
+    .button-image {
+      @apply h-24 w-24 p-4 border-2 border-gray-200 rounded-xl cursor-pointer
+    }
+    .button-text {
+      @apply h-8 my-auto justify-center align-middle text-center text-sm pt-1
+    }
+    .button {
+      @apply h-30 w-28 flex flex-col items-center 
+    }
+    .button-container {
+      @apply w-full inline-flex justify-center bg-white
+    }
+    .button-left {
+      @apply mr-2
+    }
+    .button-right {
+      @apply ml-2
+    }
+
+    .menu-shadow {
+      @apply hidden drop-shadow-2xl
+    }
+    .menu {
+      @apply h-162 bg-white border-2 border-gray-200 rounded-xl z-20 md:w-[550px] my-auto
+    }
+    .menu-label {
+      @apply text-center text-lg pt-10
+    }
+
+    .menu-options-container {
+      @apply w-125 mx-auto flex flex-wrap justify-center p-4
+    }
+    .menu-options-image-and-text {
+      @apply my-2 text-center
+    }
+    .menu-option-image {
+      @apply h-20 w-20 mx-5 p-2 bg-white transition hover:drop-shadow-md cursor-pointer border-2 border-gray-200 rounded-xl
+    }
+  }
