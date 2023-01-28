@@ -9,5 +9,6 @@
     "Tide": "assets/smithing-templates/tide.png",
     "Vex": "assets/smithing-templates/vex.png",
     "Ward": "assets/smithing-templates/ward.png",
-    "Wild": "assets/smithing-templates/wild.png"
+    "Wild": "assets/smithing-templates/wild.png",
+    "None": "assets/smithing-templates/none.png"
 }

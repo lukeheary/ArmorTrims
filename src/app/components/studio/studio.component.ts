@@ -57,16 +57,16 @@ export class StudioComponent implements OnInit {
 
       for(let j = 0; j < armorMaterialAssets.length; j++) {
         switch(armorTypes[i]) {
-          case 'helmet':
+          case 'Helmet':
             this.helmetAssets.set(armorMaterial[j], armorMaterialAssets[j])
             break;
-          case 'chestplate':
+          case 'Chestplate':
             this.chestplateAssets.set(armorMaterial[j], armorMaterialAssets[j])
             break;
-          case 'leggings':
+          case 'Leggings':
             this.leggingsAssets.set(armorMaterial[j], armorMaterialAssets[j])
             break;
-          case 'boots':
+          case 'Boots':
             this.bootsAssets.set(armorMaterial[j], armorMaterialAssets[j])
             break;
           }
@@ -92,8 +92,8 @@ export class StudioComponent implements OnInit {
     }
   }
 
-  openMenu() {
-    let menu = document.getElementById('helmetMenu');
+  openMenu(menuClicked:string) {
+    let menu = document.getElementById(menuClicked);
 
     menu!.style.display = 'block';
     menu!.classList.add('fixed')
@@ -114,8 +114,9 @@ export class StudioComponent implements OnInit {
   }
 
   setMenuList() {
-    let helmetMenu = document.getElementById('helmetMenu'); 
-    this.menuList = [helmetMenu!];
+    let smithingTemplateMenu = document.getElementById('smithingTemplateMenu'); 
+    let helmetMaterialMenu = document.getElementById('helmetMaterialMenu'); 
+    this.menuList = [smithingTemplateMenu!, helmetMaterialMenu!];
   }
   
   closeMenu(event:Event) {
@@ -129,5 +130,22 @@ export class StudioComponent implements OnInit {
     }
   }
 
+  clickOption(option:string, type:string) {
+    let image = document.getElementById(type + "Image");
+    let text = document.getElementById(type + "Text");
+    let templateAsset = '';
+
+    switch(type) {
+      case 'smithingTemplate':
+        templateAsset = this.smithingTemplates.get(option)!;
+        break;
+      case 'helmetMaterial':
+        templateAsset = this.helmetAssets.get(option)!;
+        break;
+    }
+
+    image!.setAttribute('src', templateAsset)
+    text!.innerHTML = option;
+  }
 
 }

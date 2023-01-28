@@ -2,51 +2,65 @@
     <div class="studio h-4/5 sm:w-[1100px] w-screen mx-auto my-auto bg-blue-400 flex flex-col md:flex-row">
         <div class="image bg-green-400 md:h-full h-[500px] md:w-[550px]">
 
-
-
-
-
         </div>
         <div class="options bg-green-100 h-full md:w-[550px]">
             <div id="optionsContainer" class="flex flex-col h-full justify-around">
 
                 <div id="headOptionsContainer">
 
-                    <!-- HELMET MENU -->
-                    <div id = 'helmetMenu' class="hidden">
+                    <!-- TEMPLATE MENU -->
+                    <div id = 'smithingTemplateMenu' class="hidden drop-shadow-2xl">
                         <div class="bg-white border-2 border-gray-200 rounded-xl z-20 md:w-[550px] flex flex-wrap justify-around p-4">
                             <div *ngFor = 'let template of smithingTemplates | keyvalue'>
-                                <div class="my-2"> 
-                                    <img src = '{{ template.value }}' class="h-20 w-20 mx-3 p-2 hover:p-1 cursor-pointer border-2 border-gray-200 rounded-xl"/>
-                                    <div class="text-center">
-                                        {{ template.key }}
+                                <div class="my-2 text-center" (click)='clickOption(template.key, "smithingTemplate")'> 
+                                    <div>
+                                        <img src = '{{ template.value }}' class="h-20 w-20 mx-3 p-2 bg-white transition duration-250 hover:drop-shadow-md cursor-pointer border-2 border-gray-200 rounded-xl"/>
                                     </div>
+                                    {{ template.key }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- END HELMET MENU -->
+                    <!-- END TEMPLATE MENU -->
 
+                    <!-- HELMET MATERIAL MENU -->
+                    <div id = 'helmetMaterialMenu' class="hidden drop-shadow-2xl">
+                        <div class="bg-white border-2 border-gray-200 rounded-xl z-20 md:w-[550px] flex flex-wrap justify-around p-4">
+                            <div *ngFor = 'let helmet of helmetAssets | keyvalue'>
+                                <div class="my-2 text-center" (click)='clickOption(helmet.key, "helmetMaterial")'> 
+                                    <div>
+                                        <img src = '{{ helmet.value }}' class="h-20 w-20 mx-3 p-3 bg-white transition duration-250 hover:drop-shadow-md cursor-pointer border-2 border-gray-200 rounded-xl"/>
+                                    </div>
+                                    {{ helmet.key }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END HELMET MATERIAL MENU -->
+
+                    <!-- HELMET OPTIONS -->
                     <div>Helmet</div>
                     <div id="headOptions" class=" w-full inline-flex justify-around">
+                        <!-- TEMPLATE -->
                         <div class="h-32 w-24 bg-white">
-                            <div id="image" class="h-24 w-24 border-2 border-gray-200 rounded-xl hover:border-4 cursor-pointer" (click)="openMenu()">
-
-                            </div>
-                            <div class="h-8 my-auto justify-center align-middle text-red-400 text-center text-sm pt-1">
-                                Coast
-
-                            </div>
-    
+                            <img id="smithingTemplateImage" src='assets/smithing-templates/none.png' class="h-24 w-24 p-4 border-2 border-gray-200 rounded-xl cursor-pointer" (click)='openMenu("smithingTemplateMenu")'/>
+                            <div id='smithingTemplateText' class="h-8 my-auto justify-center align-middle text-center text-sm pt-1"></div>
                         </div>
+
+                        <!-- HELMET -->
                         <div class="h-32 w-24 bg-white">
-    
+                            <img id="helmetMaterialImage" src='assets/smithing-templates/none.png' class="h-24 w-24 p-2 border-2 border-gray-200 rounded-xl cursor-pointer" (click)='openMenu("helmetMaterialMenu")'/>
+                            <div id='helmetMaterialText' class="h-8 my-auto justify-center align-middle text-center text-sm pt-1"></div>
                         </div>
+
+                        <!-- TRIM MATERIAL -->
                         <div class="h-32 w-24 bg-white">
     
                         </div>
                     </div>
                 </div>
+                <!-- END HELMET TEMPLATE OPTIONS -->
+
 
                 <div id="headOptionsContainer">
                     <div>Chestplate</div>
