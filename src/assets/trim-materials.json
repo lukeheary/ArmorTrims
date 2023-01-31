@@ -8,5 +8,6 @@
     "Lapis Lazuli": "assets/trim-materials/lapis_lazuli.png",
     "Nether Quartz": "assets/trim-materials/nether_quartz.png",
     "Netherite Ingot": "assets/trim-materials/netherite_ingot.png",
-    "Redstone Dust": "assets/trim-materials/redstone_dust.png"
+    "Redstone Dust": "assets/trim-materials/redstone_dust.png",
+    "None": "assets/smithing-templates/none.png"
 }
