@@ -276,7 +276,12 @@ export class StudioComponent implements OnInit {
       for(let j = 0; j < slots.length; j++) {
         let image = document.getElementById(slots[j] + armor[i] + "Image");
         let text = document.getElementById(slots[j] + armor[i] + "Text");
-        image!.setAttribute('src', 'none');
+
+        if (j === 1) {
+          image!.setAttribute('src', 'assets/armor-pieces/no_' + armor[i].toLowerCase() + '.png');
+        } else {
+          image!.setAttribute('src', 'none' + armor[i].toLowerCase() + '.png');
+        }
         text!.innerHTML = 'None';
       }
     }
