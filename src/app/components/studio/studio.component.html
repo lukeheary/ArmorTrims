@@ -1,11 +1,19 @@
 <div class="wrapper h-screen w-screen flex" (click) = "closeMenu($event)">
     <div class="studio h-4/5 sm:w-[1000px] w-screen mx-auto my-auto flex flex-col md:flex-row">
-        <div class="image  md:h-162 h-[500px] md:w-[500px]">
+        <div class="image md:h-162 h-[500px] md:w-[500px] flex align-middle items-center">
 
-            {{ currentHelmetConfigurationAsset }}
+            <!-- {{ currentHelmetConfigurationAsset }}
             {{ currentChestplateConfigurationAsset }}
             {{ currentLeggingsConfigurationAsset }}
-            {{ currentBootsConfigurationAsset }}
+            {{ currentBootsConfigurationAsset }} -->
+
+
+            <!-- THE ARMOR STAND-->
+            <div class="h-[500px] w-[300px] bg-[#C6C6C6] mx-auto border-4 border-white border-b-gray-700 border-r-gray-700">
+                <img src = 'assets/base-armor/armor_stand.png' class="absolute"/>
+                <img src = '{{ currentHelmetAsset }}' class="absolute z-20"/>
+                <img src = '{{ currentHelmetTrimAsset }}' class="absolute z-30"/>
+            </div>
 
         </div>
         <div class="options h-162 md:w-[500px] shadow-2xl bg-[#C6C6C6] border-4 border-white border-b-gray-700 border-r-gray-700">
@@ -305,7 +313,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-2 text-center border-4 border-b-gray-700 border-r-gray-700 w-20 cursor-pointer mx-auto hover:bg-gray-300" (click)="reset()"> Clear All </div>
+                <div class="mt-2 text-center border-4 border-b-gray-700 border-r-gray-700 w-20 cursor-pointer mx-auto hover:bg-gray-300 select-none" (click)="reset()"> Clear All </div>
             </div>
         </div>
     </div>

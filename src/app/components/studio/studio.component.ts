@@ -26,10 +26,15 @@ export class StudioComponent implements OnInit {
   public currentLeggingsConfiguration: Map<string, string> = new Map<string, string>();
   public currentBootsConfiguration: Map<string, string> = new Map<string, string>();
 
-  public currentHelmetConfigurationAsset:string;
-  public currentChestplateConfigurationAsset:string;
-  public currentLeggingsConfigurationAsset:string;
-  public currentBootsConfigurationAsset:string;
+  public currentHelmetAsset:string;
+  public currentChestplateAsset:string;
+  public currentLeggingsAsset:string;
+  public currentBootsAsset:string;
+
+  public currentHelmetTrimAsset:string;
+  public currentChestplateTrimAsset:string;
+  public currentLeggingsTrimAsset:string;
+  public currentBootsTrimAsset:string;
 
   public smithingTemplates: Map<string, string> = new Map<string, string>();
   public trimMaterials: Map<string, string> = new Map<string, string>();
@@ -61,7 +66,7 @@ export class StudioComponent implements OnInit {
   }
 
   setCurrentConfigurations() {
-    let keys = ['smithingTemplate', 'armorMaterial', 'trimMaterial', 'configurationAsset'];
+    let keys = ['smithingTemplate', 'armorMaterial', 'trimMaterial', 'armorAsset', 'trimAsset'];
 
     for(let i = 0; i < keys.length; i++) {
       this.currentHelmetConfiguration.set(keys[i], "None");
@@ -217,19 +222,27 @@ export class StudioComponent implements OnInit {
   updateConfiguration(option:string, type:string) {
     if(type.includes('Helmet')) {
       this.currentHelmetConfiguration = this.updateConfigurationLogic(option, type, 'Helmet', this.currentHelmetConfiguration);
-      this.currentHelmetConfigurationAsset = this.currentHelmetConfiguration.get('configurationAsset')!;
+
+      let armorAsset = this.currentHelmetConfiguration.get('armorAsset')!;
+      let trimAsset = this.currentHelmetConfiguration.get('trimAsset')!;
+
+      armorAsset !== 'None' ? this.currentHelmetAsset = armorAsset : this.currentHelmetAsset = ""
+      trimAsset !== 'None' ? this.currentHelmetTrimAsset = trimAsset : this.currentHelmetTrimAsset = ""
 
     } else if(type.includes('Chestplate')) {
       this.currentChestplateConfiguration = this.updateConfigurationLogic(option, type, 'Chestplate', this.currentChestplateConfiguration);
-      this.currentChestplateConfigurationAsset = this.currentChestplateConfiguration.get('configurationAsset')!;
+      this.currentChestplateAsset = this.currentChestplateConfiguration.get('armorAsset')!;
+      this.currentChestplateTrimAsset = this.currentChestplateConfiguration.get('trimAsset')!;
 
     } else if(type.includes('Leggings')) {
       this.currentLeggingsConfiguration = this.updateConfigurationLogic(option, type, 'Leggings', this.currentLeggingsConfiguration);
-      this.currentLeggingsConfigurationAsset = this.currentLeggingsConfiguration.get('configurationAsset')!;
+      this.currentLeggingsAsset = this.currentLeggingsConfiguration.get('armorAsset')!;
+      this.currentLeggingsTrimAsset = this.currentLeggingsConfiguration.get('trimAsset')!;
 
     } else if(type.includes('Boots')) {
       this.currentBootsConfiguration = this.updateConfigurationLogic(option, type, 'Boots', this.currentBootsConfiguration);
-      this.currentBootsConfigurationAsset = this.currentBootsConfiguration.get('configurationAsset')!;
+      this.currentBootsAsset = this.currentBootsConfiguration.get('armorAsset')!;
+      this.currentBootsTrimAsset = this.currentBootsConfiguration.get('trimAsset')!;
     }
   }
 
@@ -249,27 +262,57 @@ export class StudioComponent implements OnInit {
     let armorMaterial = configuration.get('armorMaterial');
     let trimMaterial = configuration.get('trimMaterial');
 
-    if (smithingTemplate !== 'None' && armorMaterial !== 'None' && trimMaterial !== 'None') {
-      assetPath = 'assets/' + armor.toLowerCase() + '/' +  smithingTemplate + '_' + armorMaterial + '_' + trimMaterial + '.png';
-      configuration.set('configurationAsset', assetPath);
-    } else if (armorMaterial !== 'None' && (smithingTemplate === 'None' || trimMaterial === 'None')) {
-      assetPath = 'assets/' + armor.toLowerCase() + '/' + armorMaterial + '_' + armor + '.png';
-      configuration.set('configurationAsset', assetPath);
-    } else if (smithingTemplate === 'None' && armorMaterial === 'None' && trimMaterial === 'None') {
-      assetPath = 'none.png';
+    console.log(option, type, smithingTemplate, armorMaterial, trimMaterial)
+    if (armorMaterial === 'None') {
+      configuration.set('armorAsset', "None");
+      configuration.set('trimAsset', "None");
+      console.log('here2')
+  
     }
+    else if(option === 'None') {
+      configuration.set('trimAsset', "None");
 
+    } else if (smithingTemplate !== 'None' && armorMaterial !== 'None' && trimMaterial !== 'None') {
+      assetPath = 'assets/trims/' + armor.toLowerCase() + '/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
+      configuration.set('trimAsset', assetPath);
+      console.log('here3')
+
+      assetPath = 'assets/base-armor/' + armorMaterial + '_' + armor + '.png';
+      configuration.set('armorAsset', assetPath);
+      console.log('here4')
+
+    } else if (armorMaterial !== 'None' && (smithingTemplate === 'None' || trimMaterial === 'None')) {
+
+      assetPath = 'assets/base-armor/' + armorMaterial + '_' + armor + '.png';
+      configuration.set('armorAsset', assetPath);
+      console.log('here6')
+
+    } else if (smithingTemplate === 'None' && armorMaterial === 'None' && trimMaterial === 'None') {
+      configuration.set('armorAsset', "None");
+      configuration.set('trimAsset', "None");
+      console.log('here7')
+
+    }
+    console.log('here8')
+
+
+    console.log(configuration)
     return configuration;
   }
 
   reset() {
     this.setCurrentConfigurations();
 
-    this.currentHelmetConfigurationAsset = '';
-    this.currentChestplateConfigurationAsset = '';
-    this.currentLeggingsConfigurationAsset = '';
-    this.currentBootsConfigurationAsset = '';
-
+    this.currentHelmetAsset = '';
+    this.currentChestplateAsset = '';
+    this.currentLeggingsAsset = '';
+    this.currentBootsAsset = '';
+  
+    this.currentHelmetTrimAsset = '';
+    this.currentChestplateTrimAsset = '';
+    this.currentLeggingsTrimAsset = '';
+    this.currentBootsTrimAsset = '';
+    
     let armor = ['Helmet', 'Chestplate', 'Leggings', 'Boots'];
     let slots = ['smithingTemplate', 'armorMaterial', 'trimMaterial']
     for(let i = 0; i < armor.length; i++) {
@@ -277,10 +320,12 @@ export class StudioComponent implements OnInit {
         let image = document.getElementById(slots[j] + armor[i] + "Image");
         let text = document.getElementById(slots[j] + armor[i] + "Text");
 
-        if (j === 1) {
+        if (j === 0) {
+          image!.setAttribute('src', 'assets/smithing-templates/no_template.png');
+        } else if (j === 1) {
           image!.setAttribute('src', 'assets/armor-pieces/no_' + armor[i].toLowerCase() + '.png');
-        } else {
-          image!.setAttribute('src', 'none' + armor[i].toLowerCase() + '.png');
+        } else if (j === 2) {
+          image!.setAttribute('src', 'assets/trim-materials/no_trim.png');
         }
         text!.innerHTML = 'None';
       }
