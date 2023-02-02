@@ -262,11 +262,9 @@ export class StudioComponent implements OnInit {
     let armorMaterial = configuration.get('armorMaterial');
     let trimMaterial = configuration.get('trimMaterial');
 
-    console.log(option, type, smithingTemplate, armorMaterial, trimMaterial)
     if (armorMaterial === 'None') {
       configuration.set('armorAsset', "None");
       configuration.set('trimAsset', "None");
-      console.log('here2')
   
     }
     else if(option === 'None') {
@@ -275,28 +273,20 @@ export class StudioComponent implements OnInit {
     } else if (smithingTemplate !== 'None' && armorMaterial !== 'None' && trimMaterial !== 'None') {
       assetPath = 'assets/trims/' + armor.toLowerCase() + '/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
       configuration.set('trimAsset', assetPath);
-      console.log('here3')
 
       assetPath = 'assets/base-armor/' + armorMaterial + '_' + armor + '.png';
       configuration.set('armorAsset', assetPath);
-      console.log('here4')
 
     } else if (armorMaterial !== 'None' && (smithingTemplate === 'None' || trimMaterial === 'None')) {
 
       assetPath = 'assets/base-armor/' + armorMaterial + '_' + armor + '.png';
       configuration.set('armorAsset', assetPath);
-      console.log('here6')
 
     } else if (smithingTemplate === 'None' && armorMaterial === 'None' && trimMaterial === 'None') {
       configuration.set('armorAsset', "None");
       configuration.set('trimAsset', "None");
-      console.log('here7')
-
     }
-    console.log('here8')
 
-
-    console.log(configuration)
     return configuration;
   }
 
