@@ -1,5 +1,8 @@
 <div class="wrapper h-screen w-screen flex" (click) = "closeMenu($event)">
-    <div class="studio h-4/5 sm:w-[1000px] w-screen mx-auto my-auto flex flex-col md:flex-row">
+    <img src = 'assets/background.png' class="absolute z-0 bg-auto h-full w-full brightness-[0.20]"/>
+
+    <!-- <div class="w-full h-10 bg-blue-100 fixed">Navbar</div> -->
+    <div class="studio h-4/5 sm:w-[800px] w-screen mx-auto my-auto flex flex-col md:flex-row shadow-2xl bg-[#C6C6C6] z-10 border-4 border-white border-b-gray-700 border-r-gray-700">
         <div class="image md:h-162 h-[500px] md:w-[500px] flex align-middle items-center">
 
             <!-- {{ currentHelmetConfigurationAsset }}
@@ -9,7 +12,7 @@
 
 
             <!-- THE ARMOR STAND-->
-            <div class="h-[500px] w-[300px] bg-[#C6C6C6] mx-auto border-4 border-white border-b-gray-700 border-r-gray-700">
+            <div class="h-[500px] w-[300px] z-10 bg-[#C6C6C6] mx-auto ">
                 <img src = 'assets/base-armor/armor_stand.png' class="absolute"/>
                 <img src = '{{ currentHelmetAsset }}' class="absolute z-50"/>
                 <img src = '{{ currentHelmetTrimAsset }}' class="absolute z-50"/>
@@ -19,7 +22,7 @@
             </div>
 
         </div>
-        <div class="options h-162 md:w-[500px] shadow-2xl bg-[#C6C6C6] border-4 border-white border-b-gray-700 border-r-gray-700">
+        <div class="options z-10 md:w-[500px]  bg-[#C6C6C6] ">
             <div id="optionsContainer" class="flex flex-col h-full justify-center">
 
                 <!-- HELMET SMITHING TEMPLATE MENU -->

@@ -225,7 +225,6 @@ export class StudioComponent implements OnInit {
 
       let armorAsset = this.currentHelmetConfiguration.get('armorAsset')!;
       let trimAsset = this.currentHelmetConfiguration.get('trimAsset')!;
-
       armorAsset !== 'None' ? this.currentHelmetAsset = armorAsset : this.currentHelmetAsset = ""
       trimAsset !== 'None' ? this.currentHelmetTrimAsset = trimAsset : this.currentHelmetTrimAsset = ""
 
@@ -234,21 +233,25 @@ export class StudioComponent implements OnInit {
 
       let armorAsset = this.currentChestplateConfiguration.get('armorAsset')!;
       let trimAsset = this.currentChestplateConfiguration.get('trimAsset')!;
-
       armorAsset !== 'None' ? this.currentChestplateAsset = armorAsset : this.currentChestplateAsset = ""
       trimAsset !== 'None' ? this.currentChestplateTrimAsset = trimAsset : this.currentChestplateTrimAsset = ""
       
-      console.log('HERE:', armorAsset,trimAsset)
 
     } else if(type.includes('Leggings')) {
       this.currentLeggingsConfiguration = this.updateConfigurationLogic(option, type, 'Leggings', this.currentLeggingsConfiguration);
-      this.currentLeggingsAsset = this.currentLeggingsConfiguration.get('armorAsset')!;
-      this.currentLeggingsTrimAsset = this.currentLeggingsConfiguration.get('trimAsset')!;
+
+      let armorAsset = this.currentLeggingsConfiguration.get('armorAsset')!;
+      let trimAsset = this.currentLeggingsConfiguration.get('trimAsset')!;
+      armorAsset !== 'None' ? this.currentLeggingsAsset = armorAsset : this.currentLeggingsAsset = ""
+      trimAsset !== 'None' ? this.currentLeggingsTrimAsset = trimAsset : this.currentLeggingsTrimAsset = ""
 
     } else if(type.includes('Boots')) {
       this.currentBootsConfiguration = this.updateConfigurationLogic(option, type, 'Boots', this.currentBootsConfiguration);
-      this.currentBootsAsset = this.currentBootsConfiguration.get('armorAsset')!;
-      this.currentBootsTrimAsset = this.currentBootsConfiguration.get('trimAsset')!;
+
+      let armorAsset = this.currentBootsConfiguration.get('armorAsset')!;
+      let trimAsset = this.currentBootsConfiguration.get('trimAsset')!;
+      armorAsset !== 'None' ? this.currentBootsAsset = armorAsset : this.currentBootsAsset = ""
+      trimAsset !== 'None' ? this.currentBootsTrimAsset = trimAsset : this.currentBootsTrimAsset = ""
     }
   }
 
@@ -268,7 +271,6 @@ export class StudioComponent implements OnInit {
     let armorMaterial = configuration.get('armorMaterial');
     let trimMaterial = configuration.get('trimMaterial');
 
-    console.log(option, type, smithingTemplate, armorMaterial, trimMaterial)
     if (armorMaterial === 'None') {
       configuration.set('armorAsset', "None");
       configuration.set('trimAsset', "None");

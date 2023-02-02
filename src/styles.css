@@ -30,7 +30,7 @@
       @apply hidden drop-shadow-2xl
     }
     .menu {
-      @apply h-162 shadow-2xl -ml-1 bg-[#C6C6C6] border-4 border-white border-b-gray-700 border-r-gray-700 z-20 md:w-[500px] my-auto
+      @apply h-162 shadow-2xl bg-[#C6C6C6] border-4 border-white border-b-gray-700 border-r-gray-700 z-20 md:w-[400px] my-auto
     }
     .menu-label {
       @apply text-center text-lg pt-10
