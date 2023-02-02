@@ -231,8 +231,14 @@ export class StudioComponent implements OnInit {
 
     } else if(type.includes('Chestplate')) {
       this.currentChestplateConfiguration = this.updateConfigurationLogic(option, type, 'Chestplate', this.currentChestplateConfiguration);
-      this.currentChestplateAsset = this.currentChestplateConfiguration.get('armorAsset')!;
-      this.currentChestplateTrimAsset = this.currentChestplateConfiguration.get('trimAsset')!;
+
+      let armorAsset = this.currentChestplateConfiguration.get('armorAsset')!;
+      let trimAsset = this.currentChestplateConfiguration.get('trimAsset')!;
+
+      armorAsset !== 'None' ? this.currentChestplateAsset = armorAsset : this.currentChestplateAsset = ""
+      trimAsset !== 'None' ? this.currentChestplateTrimAsset = trimAsset : this.currentChestplateTrimAsset = ""
+      
+      console.log('HERE:', armorAsset,trimAsset)
 
     } else if(type.includes('Leggings')) {
       this.currentLeggingsConfiguration = this.updateConfigurationLogic(option, type, 'Leggings', this.currentLeggingsConfiguration);
@@ -262,6 +268,7 @@ export class StudioComponent implements OnInit {
     let armorMaterial = configuration.get('armorMaterial');
     let trimMaterial = configuration.get('trimMaterial');
 
+    console.log(option, type, smithingTemplate, armorMaterial, trimMaterial)
     if (armorMaterial === 'None') {
       configuration.set('armorAsset', "None");
       configuration.set('trimAsset', "None");
