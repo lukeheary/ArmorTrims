@@ -40,20 +40,8 @@ export class StudioComponent implements OnInit {
   public trimMaterials: Map<string, string> = new Map<string, string>();
   
   public menuList:HTMLElement[];
-  public screenWidth: number;
-
-  // @HostListener('window:resize', ['$event']) onResize() {
-  //   this.screenWidth = window.innerWidth;
-  //   if (this.screenWidth > 1100) {
-  //     for (let menu of this.menuList) {
-  //       menu!.style.display = 'none'
-  //       menu!.style.bottom = '';
-  //     }
-  //   }
-  // }
 
   ngOnInit(): void {
-
     this.setCurrentConfigurations();
 
     this.populateArmorPieces();
@@ -62,7 +50,6 @@ export class StudioComponent implements OnInit {
 
     this.setMenuList();
     this.reset();
-
   }
 
   setCurrentConfigurations() {
@@ -123,23 +110,8 @@ export class StudioComponent implements OnInit {
 
   openMenu(menuClicked:string) {
     let menu = document.getElementById(menuClicked);
-
     menu!.style.display = 'block';
-    menu!.classList.add('fixed')
-
-
-    // let menu = document.getElementById(currentMenu); 
-    // this.screenWidth = window.innerWidth;
-
-    // if(this.screenWidth > 1100) {
-    //   menu!.style.display = 'block'
-    //   menu?.classList.add('fixed')
-    //   menu!.scrollTop = 0;
-    // } else {
-    //   menu!.style.display = 'block'
-    //   menu!.scrollTop = 0;
-    //   menu!.style.bottom = '0px';
-    // }  
+    menu!.classList.add('absolute')
   }
 
   setMenuList() {
@@ -176,7 +148,6 @@ export class StudioComponent implements OnInit {
   
   closeMenu(event:Event) {
     let clickedElement = (event.target) as HTMLElement
-    this.screenWidth = window.innerWidth;
 
     for(let menu of this.menuList) {
       if(clickedElement.id === '') {
@@ -245,6 +216,8 @@ export class StudioComponent implements OnInit {
       armorAsset !== 'None' ? this.currentLeggingsAsset = armorAsset : this.currentLeggingsAsset = ""
       trimAsset !== 'None' ? this.currentLeggingsTrimAsset = trimAsset : this.currentLeggingsTrimAsset = ""
 
+      console.log(armorAsset, trimAsset)
+
     } else if(type.includes('Boots')) {
       this.currentBootsConfiguration = this.updateConfigurationLogic(option, type, 'Boots', this.currentBootsConfiguration);
 
@@ -254,7 +227,6 @@ export class StudioComponent implements OnInit {
       trimAsset !== 'None' ? this.currentBootsTrimAsset = trimAsset : this.currentBootsTrimAsset = ""
     }
   }
-
 
   updateConfigurationLogic(option:string, type:string, armor:string, configuration:Map<string, string>) {
     let assetPath = '';
@@ -275,13 +247,18 @@ export class StudioComponent implements OnInit {
       configuration.set('armorAsset', "None");
       configuration.set('trimAsset', "None");
   
-    }
-    else if(option === 'None') {
+    } else if(option === 'None') {
       configuration.set('trimAsset', "None");
 
     } else if (smithingTemplate !== 'None' && armorMaterial !== 'None' && trimMaterial !== 'None') {
-      assetPath = 'assets/trims/' + armor.toLowerCase() + '/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
-      configuration.set('trimAsset', assetPath);
+
+      if(armor === 'Chestplate' && (armorMaterial === 'Golden' || armorMaterial === 'Diamond' || armorMaterial === 'Iron')) {
+        assetPath = 'assets/trims/metalchestplates/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
+        configuration.set('trimAsset', assetPath);
+      } else {
+        assetPath = 'assets/trims/' + armor.toLowerCase() + '/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
+        configuration.set('trimAsset', assetPath);
+      }
 
       assetPath = 'assets/base-armor/' + armorMaterial + '_' + armor + '.png';
       configuration.set('armorAsset', assetPath);
