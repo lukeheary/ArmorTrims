@@ -1,5 +1,6 @@
-<img src = 'assets/background.png' class="fixed w-full z-0 h-full brightness-[0.20]"/>
-<div class="wrapper h-screen w-screen flex flex-col" (click) = "closeMenu($event)">
+<img src = 'assets/background.png' class="w-full z-0 fixed h-full bg-cover bg-black brightness-[0.20]" (click) = "closeMenu()"/>
+<div class="wrapper md:h-screen w-screen flex flex-col bg-[#1A2428]">
+<!-- <div class="wrapper md:h-screen w-screen flex flex-col bg-[#1A2428]" (click) = "closeMenu($event)"> -->
 
     <div class="text-white fixed w-full h-16 flex">
         <div class="w-72">
@@ -8,18 +9,26 @@
     </div>
 
     <div class="mt-24 md:hidden md:w-[800px] w-screen mx-auto relative flex flex-row text-white justify-center">
-        <a href="https://twitter.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer">
+        <a href="https://twitter.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer" (click)="contact()">
             Contact
         </a>
-        <a href="https://buymeacoffee.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer">
-            Buy me a coffee :)
+        <!-- <a href="https://buymeacoffee.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer" (click)="support()">
+            Support
+        </a> -->
+        <a href="https://billing.apexminecrafthosting.com/aff.php?aff=10545" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition" (click)="server()">
+            Need a Server?
         </a>
     </div>
 
     <div class="my-auto">
         <div class="studio md:mt-10 mb-6 mt-4 md:w-[800px] w-11/12 mx-auto relative flex flex-col md:flex-row shadow-2xl bg-[#C6C6C6] z-10 border-4 border-white border-b-gray-700 border-r-gray-700">
-            <div class="image md:h-[626px] h-[550px] md:w-[400px] flex align-middle items-center">
-    
+            <div class="image md:h-[626px] h-[550px] md:w-[400px] flex align-middle items-center flex-col" (click) = "closeMenu()">
+                
+                <!-- ANNOUNCEMENT -->
+                <div class="font-medium mt-4 mb-6">
+                    NEW: Added Dyed Leather Armor
+                </div>
+
                 <!-- THE ARMOR STAND-->
                 <div class="h-[500px] w-[300px] z-10 bg-[#C6C6C6] mx-auto ">
                     <img src = 'assets/base-armor/armor_stand.png' class="absolute"/>
@@ -102,12 +111,12 @@
                             </div>
                         </div>
                     </div>
-    
                     <!-- HELMET MATERIAL MENU -->
                     <div id = 'armorMaterialHelmetMenu' class="menu-shadow">
                         <div class="menu">
                             <div class="menu-label">Helmet Materials</div> 
-                            <div class="menu-options-container">
+                            <div class="menu-options-container" id="helmetOptions">
+
                                 <div *ngFor = 'let helmet of helmetAssets | keyvalue'>
                                     <div class="menu-options-image-and-text" (click)='clickOption(helmet.key, "armorMaterialHelmet")'> 
                                         <div>
@@ -117,13 +126,24 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="menu-options-container hidden" id="leatherHelmetColorOptions">
+                                <div id = 'leatherHelmetColorOptions' *ngFor = 'let dye of dyes | keyvalue'>
+                                    <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherHelmet")'> 
+                                        <div>
+                                            <img src = '{{ dye.value }}' class="menu-option-image"/>
+                                        </div>
+                                        {{ dye.key }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- CHESTPLATE MATERIAL MENU -->
                     <div id = 'armorMaterialChestplateMenu' class="menu-shadow">
                         <div class="menu">
                             <div class="menu-label">Chestplate Materials</div> 
-                            <div class="menu-options-container">
+                            <div class="menu-options-container" id="chestplateOptions">
                                 <div *ngFor = 'let chestplate of chestplateAssets | keyvalue'>
                                     <div class="menu-options-image-and-text" (click)='clickOption(chestplate.key, "armorMaterialChestplate")'> 
                                         <div>
@@ -133,13 +153,25 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="menu-options-container hidden" id="leatherChestplateColorOptions">
+                                <div id = 'leatherChestplateColorOptions' *ngFor = 'let dye of dyes | keyvalue'>
+                                    <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherChestplate")'> 
+                                        <div>
+                                            <img src = '{{ dye.value }}' class="menu-option-image"/>
+                                        </div>
+                                        {{ dye.key }}
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <!-- LEGGINGS MATERIAL MENU -->
                     <div id = 'armorMaterialLeggingsMenu' class="menu-shadow">
                         <div class="menu">
                             <div class="menu-label">Leggings Materials</div> 
-                            <div class="menu-options-container">
+                            <div class="menu-options-container" id="leggingsOptions">
                                 <div *ngFor = 'let leggings of leggingsAssets | keyvalue'>
                                     <div class="menu-options-image-and-text" (click)='clickOption(leggings.key, "armorMaterialLeggings")'> 
                                         <div>
@@ -149,13 +181,25 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="menu-options-container hidden" id="leatherLeggingsColorOptions">
+                                <div id = 'leatherLeggingsColorOptions' *ngFor = 'let dye of dyes | keyvalue'>
+                                    <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherLeggings")'> 
+                                        <div>
+                                            <img src = '{{ dye.value }}' class="menu-option-image"/>
+                                        </div>
+                                        {{ dye.key }}
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <!-- BOOTS MATERIAL MENU -->
                     <div id = 'armorMaterialBootsMenu' class="menu-shadow">
                         <div class="menu">
                             <div class="menu-label">Boots Materials</div> 
-                            <div class="menu-options-container">
+                            <div class="menu-options-container" id="bootsOptions">
                                 <div *ngFor = 'let boots of bootsAssets | keyvalue'>
                                     <div class="menu-options-image-and-text" (click)='clickOption(boots.key, "armorMaterialBoots")'> 
                                         <div>
@@ -165,9 +209,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="menu-options-container hidden" id="leatherBootsColorOptions">
+                                <div id = 'leatherBootsColorOptions' *ngFor = 'let dye of dyes | keyvalue'>
+                                    <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherBoots")'> 
+                                        <div>
+                                            <img src = '{{ dye.value }}' class="menu-option-image"/>
+                                        </div>
+                                        {{ dye.key }}
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-    
                     <!-- HELMET TRIM MATERIAL MENU -->
                     <div id = 'trimMaterialHelmetMenu' class="menu-shadow">
                         <div class="menu">
@@ -328,26 +383,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="md:mt-2 md:mb-0 mt-4 mb-10 text-center border-4 border-b-gray-700 border-r-gray-700 w-20 cursor-pointer mx-auto hover:bg-gray-300 select-none" (click)="reset()"> Clear All </div>
+                    <div class="md:mt-2 md:mb-0 mt-4 mb-10 text-center border-4 border-b-gray-700 border-r-gray-700 w-20 cursor-pointer mx-auto hover:bg-gray-300 select-none" (click)="resetEvent()"> Clear All </div>
                 </div>
             </div>
         </div>
         <div class="mt-4 md:w-[800px] w-screen mx-auto relative hidden md:flex flex-row text-white justify-center">
-            <a href="https://twitter.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition">
+            <a href="https://twitter.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition" (click)="contact()">
                 Contact
             </a>
-            <a href="https://buymeacoffee.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition">
-                Buy me a coffee :)
+            <!-- <a href="https://buymeacoffee.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition" (click)="support()">
+                Support
+            </a> -->
+            <a href="https://billing.apexminecrafthosting.com/aff.php?aff=10545" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition" (click)="server()">
+                Need a Server?
             </a>
         </div>
     </div>
-
-
-    <!-- <div class="mt-4 md:w-[800px] w-screen mx-auto relative flex flex-col md:flex-row shadow-2xl bg-[#C6C6C6] z-10 border-4 border-white border-b-gray-700 border-r-gray-700">
-        <div class="m-4 w-full text-center">
-            Thanks for checking out the site!
-        </div>
-    </div> -->
-
-
 </div>

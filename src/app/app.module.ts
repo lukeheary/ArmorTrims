@@ -5,6 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StudioComponent } from './components/studio/studio.component';
 
+import {environment} from '../environments/environment';
+import firebase from 'firebase/compat/app';
+
+if(window.location.hostname != "localhost") {
+  firebase.initializeApp(environment.firebaseConfig);
+}
+
 @NgModule({
   declarations: [
     AppComponent,

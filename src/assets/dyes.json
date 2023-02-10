@@ -1,0 +1,18 @@
+{
+    "Black": "assets/dyes/black.png",
+    "Blue": "assets/dyes/blue.png",
+    "Brown": "assets/dyes/brown.png",
+    "Cyan": "assets/dyes/cyan.png",
+    "Gray": "assets/dyes/gray.png",
+    "Green": "assets/dyes/green.png",
+    "Light Blue": "assets/dyes/light_blue.png",
+    "Light Gray": "assets/dyes/light_gray.png",
+    "Lime": "assets/dyes/lime.png",
+    "Magenta": "assets/dyes/magenta.png",
+    "Orange": "assets/dyes/orange.png",
+    "Pink": "assets/dyes/pink.png",
+    "Purple": "assets/dyes/purple.png",
+    "Red": "assets/dyes/red.png",
+    "White": "assets/dyes/white.png",
+    "Yellow": "assets/dyes/yellow.png"
+}

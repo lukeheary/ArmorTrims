@@ -1,7 +1,10 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import ArmorPieceData from '../../../assets/armor-pieces.json';
 import SmithingTemplateData from '../../../assets/smithing-templates.json';
 import TrimMaterialData from '../../../assets/trim-materials.json';
+import DyeData from '../../../assets/dyes.json';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/analytics'
 
 @Component({
   selector: 'app-studio',
@@ -15,6 +18,7 @@ export class StudioComponent implements OnInit {
   public armorPieceData = ArmorPieceData;
   public smithingTemplateData = SmithingTemplateData;
   public trimMaterialData = TrimMaterialData;
+  public dyeData = DyeData;
 
   public helmetAssets: Map<string, string> = new Map<string, string>();
   public chestplateAssets: Map<string, string> = new Map<string, string>();
@@ -38,7 +42,8 @@ export class StudioComponent implements OnInit {
 
   public smithingTemplates: Map<string, string> = new Map<string, string>();
   public trimMaterials: Map<string, string> = new Map<string, string>();
-  
+  public dyes: Map<string, string> = new Map<string, string>();
+
   public menuList:HTMLElement[];
 
   ngOnInit(): void {
@@ -47,13 +52,14 @@ export class StudioComponent implements OnInit {
     this.populateArmorPieces();
     this.populateSmithingTemplates();
     this.populateTrimMaterials();
+    this.populateDyes();
 
     this.setMenuList();
     this.reset();
   }
 
   setCurrentConfigurations() {
-    let keys = ['smithingTemplate', 'armorMaterial', 'trimMaterial', 'armorAsset', 'trimAsset'];
+    let keys = ['smithingTemplate', 'armorMaterial', 'trimMaterial', 'armorAsset', 'trimAsset', 'dyeColor'];
 
     for(let i = 0; i < keys.length; i++) {
       this.currentHelmetConfiguration.set(keys[i], "None");
@@ -108,6 +114,15 @@ export class StudioComponent implements OnInit {
     }
   }
 
+  populateDyes() {
+    let dyeNames = Object.keys(this.dyeData);
+    let dyeAssets = Object.values(this.dyeData);
+
+    for(let i = 0; i < dyeNames.length; i++) {
+      this.dyes.set(dyeNames[i], dyeAssets[i]);
+    }
+  }
+
   openMenu(menuClicked:string) {
     let menu = document.getElementById(menuClicked);
     menu!.style.display = 'block';
@@ -146,14 +161,46 @@ export class StudioComponent implements OnInit {
       ];
   }
   
-  closeMenu(event:Event) {
-    let clickedElement = (event.target) as HTMLElement
+  closeMenu() {
+    // let clickedElement = (event.target) as HTMLElement
+    // let imageElement = (event.target) as HTMLImageElement
+
+    // for(let menu of this.menuList) {
+    //   if(clickedElement.id === '') {
+    //     menu!.style.display = 'none';
+    //   }
+    // }
+    // this.resetMenus();
 
     for(let menu of this.menuList) {
-      if(clickedElement.id === '') {
-        menu!.style.display = 'none';
-      }
+      menu!.style.display = 'none';
     }
+    this.resetMenus();
+  }
+
+  resetMenus() {
+
+    // Make this less ugly
+    let helmetOptions = document.getElementById("helmetOptions");
+    let leatherHelmetColorOptions = document.getElementById("leatherHelmetColorOptions");
+    helmetOptions?.classList.remove('hidden');
+    leatherHelmetColorOptions?.classList.add('hidden');
+
+    let chestplateOptions = document.getElementById("chestplateOptions");
+    let leatherChestplateColorOptions = document.getElementById("leatherChestplateColorOptions");
+    chestplateOptions?.classList.remove('hidden');
+    leatherChestplateColorOptions?.classList.add('hidden');
+
+    let leggingsOptions = document.getElementById("leggingsOptions");
+    let leatherLeggingsColorOptions = document.getElementById("leatherLeggingsColorOptions");
+    leggingsOptions?.classList.remove('hidden');
+    leatherLeggingsColorOptions?.classList.add('hidden');
+
+    let bootsOptions = document.getElementById("bootsOptions");
+    let leatherBootsColorOptions = document.getElementById("leatherBootsColorOptions");
+    bootsOptions?.classList.remove('hidden');
+    leatherBootsColorOptions?.classList.add('hidden');
+
   }
 
   clickOption(option:string, type:string) {
@@ -161,13 +208,41 @@ export class StudioComponent implements OnInit {
     let text = document.getElementById(type + "Text");
     let templateAsset = '';
 
-    this.updateConfiguration(option, type);
+    if(option === 'Leather') {
+      let options = ''
+      let colorOptions = ''
+      if(type.includes("Helmet")) {
+        options = 'helmetOptions';
+        colorOptions = 'leatherHelmetColorOptions';
+        this.currentHelmetConfiguration.set('armorMaterial', 'Leather');
+      } else if(type.includes("Chestplate")) {
+        options = 'chestplateOptions';
+        colorOptions = 'leatherChestplateColorOptions';
+        this.currentChestplateConfiguration.set('armorMaterial', 'Leather');
+      } else if(type.includes("Leggings")) {
+        options = 'leggingsOptions';
+        colorOptions = 'leatherLeggingsColorOptions';
+        this.currentLeggingsConfiguration.set('armorMaterial', 'Leather');
+      } else if(type.includes("Boots")) {
+        options = 'bootsOptions';
+        colorOptions = 'leatherBootsColorOptions';
+        this.currentBootsConfiguration.set('armorMaterial', 'Leather');
+      }
+
+      let optionsDiv = document.getElementById(options);
+      let colorOptionsDiv = document.getElementById(colorOptions);
+
+      optionsDiv?.classList.add('hidden');
+      colorOptionsDiv?.classList.remove('hidden')
+
+    } else {
+      this.updateConfiguration(option, type);
+    }
+
 
     if (type.startsWith('smithingTemplate')) {
       templateAsset = this.smithingTemplates.get(option)!;
-    }
-
-    if (type.startsWith('trimMaterial')) {
+    } else if (type.startsWith('trimMaterial')) {
       templateAsset = this.trimMaterials.get(option)!;
     }
 
@@ -186,8 +261,14 @@ export class StudioComponent implements OnInit {
         break;
     }
 
-    image!.setAttribute('src', templateAsset)
-    text!.innerHTML = option;
+    if(option !== 'Leather') {
+      this.closeMenu()
+    }
+
+    if (image && text) {
+      image!.setAttribute('src', templateAsset)
+      text!.innerHTML = option;
+    }
   }
 
   updateConfiguration(option:string, type:string) {
@@ -216,8 +297,6 @@ export class StudioComponent implements OnInit {
       armorAsset !== 'None' ? this.currentLeggingsAsset = armorAsset : this.currentLeggingsAsset = ""
       trimAsset !== 'None' ? this.currentLeggingsTrimAsset = trimAsset : this.currentLeggingsTrimAsset = ""
 
-      console.log(armorAsset, trimAsset)
-
     } else if(type.includes('Boots')) {
       this.currentBootsConfiguration = this.updateConfigurationLogic(option, type, 'Boots', this.currentBootsConfiguration);
 
@@ -239,41 +318,125 @@ export class StudioComponent implements OnInit {
       configuration.set('trimMaterial', option);
     }
 
+    // Event Code
+    if(window.location.hostname != "localhost") {
+      if(type.startsWith('smithingTemplate')) {
+        let eventName = 'change_' + armor.toLowerCase() + '_template';
+        firebase.analytics().logEvent(eventName, {
+          'template': option
+        });
+
+      } else if(type.startsWith('armorMaterial')) {
+        let eventName = 'change_' + armor.toLowerCase();
+        firebase.analytics().logEvent(eventName, {
+          'type': option
+        });  
+
+      } else if(type.startsWith('trimMaterial')) {
+        let eventName = 'change_' + armor.toLowerCase() + '_trim';
+        firebase.analytics().logEvent(eventName, {
+          'material': option
+        });
+      }
+    }
+
+    console.log(configuration)
+
+    let dyeColors = Array.from(this.dyes.keys());
+    if(dyeColors.includes(option)) {
+      configuration.set('dyeColor', option)
+    }
+
     let smithingTemplate = configuration.get('smithingTemplate');
     let armorMaterial = configuration.get('armorMaterial');
     let trimMaterial = configuration.get('trimMaterial');
 
+    // NO HELMET NO IMAGE
     if (armorMaterial === 'None') {
       configuration.set('armorAsset', "None");
       configuration.set('trimAsset', "None");
-  
-    } else if(option === 'None') {
-      configuration.set('trimAsset', "None");
 
-    } else if (smithingTemplate !== 'None' && armorMaterial !== 'None' && trimMaterial !== 'None') {
+    // ON SMITHING TEMPLATE CHANGE
+    } else if (type.startsWith('smithingTemplate')) {
+      configuration.set('smithingTemplate', smithingTemplate!);
 
-      if(armor === 'Chestplate' && (armorMaterial === 'Golden' || armorMaterial === 'Diamond' || armorMaterial === 'Iron')) {
-        assetPath = 'assets/trims/metalchestplates/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
-        configuration.set('trimAsset', assetPath);
+      if(smithingTemplate === 'None') {
+        configuration.set('trimAsset', 'None')
+
       } else {
+
+        if(trimMaterial !== 'None') {
+          if(armor === 'Chestplate' && (armorMaterial === 'Golden' || armorMaterial === 'Diamond' || armorMaterial === 'Iron')) {
+            assetPath = 'assets/trims/metalchestplates/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
+            configuration.set('trimAsset', assetPath);
+          } else {
+            assetPath = 'assets/trims/' + armor.toLowerCase() + '/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
+            configuration.set('trimAsset', assetPath);
+          }
+        }
+      }
+    
+    // ON ARMOR MATERIAL CHANGE
+    } else if (dyeColors.includes(option) || type.startsWith('armorMaterial')) {
+      if(trimMaterial !== 'None') {
         assetPath = 'assets/trims/' + armor.toLowerCase() + '/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
         configuration.set('trimAsset', assetPath);
       }
 
-      assetPath = 'assets/base-armor/' + armorMaterial + '_' + armor + '.png';
+      if(dyeColors.includes(option)) {
+        option = option.replace(' ', '_');
+        assetPath = 'assets/base-armor/' + armor.toLowerCase() + '/leather/' + option.toLowerCase() + '.png';
+      } else {
+        assetPath = 'assets/base-armor/' + armor.toLowerCase() + '/' + option.toLowerCase() + '.png';
+      }
       configuration.set('armorAsset', assetPath);
 
-    } else if (armorMaterial !== 'None' && (smithingTemplate === 'None' || trimMaterial === 'None')) {
+    // ON TRIM MATERIAL CHANGE
+    } else if (type.startsWith('trimMaterial')) {
+      configuration.set('trimMaterial', option)
+      if (trimMaterial === 'None') {
+        configuration.set('trimAsset', 'None');
+      } else {
 
-      assetPath = 'assets/base-armor/' + armorMaterial + '_' + armor + '.png';
-      configuration.set('armorAsset', assetPath);
-
-    } else if (smithingTemplate === 'None' && armorMaterial === 'None' && trimMaterial === 'None') {
-      configuration.set('armorAsset', "None");
-      configuration.set('trimAsset', "None");
+        if(smithingTemplate !== 'None') {
+          if(armor === 'Chestplate' && (armorMaterial === 'Golden' || armorMaterial === 'Diamond' || armorMaterial === 'Iron')) {
+            assetPath = 'assets/trims/metalchestplates/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
+            configuration.set('trimAsset', assetPath);
+          } else {
+            assetPath = 'assets/trims/' + armor.toLowerCase() + '/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
+            configuration.set('trimAsset', assetPath);
+          }
+        }
+      }
     }
 
+    console.log(configuration)
     return configuration;
+  }
+
+  support() {
+    if(window.location.hostname != "localhost") {
+      firebase.analytics().logEvent('support', {});
+    }
+  }
+
+  contact() {
+    if(window.location.hostname != "localhost") {
+      firebase.analytics().logEvent('contact', {});
+    }
+  }
+
+  server() {
+    if(window.location.hostname != "localhost") {
+      firebase.analytics().logEvent('server', {});
+    }
+  }
+
+  resetEvent() {
+    if(window.location.hostname != "localhost") {
+      firebase.analytics().logEvent('clear_all', {});
+    }
+    this.reset();
   }
 
   reset() {
