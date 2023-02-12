@@ -162,16 +162,6 @@ export class StudioComponent implements OnInit {
   }
   
   closeMenu() {
-    // let clickedElement = (event.target) as HTMLElement
-    // let imageElement = (event.target) as HTMLImageElement
-
-    // for(let menu of this.menuList) {
-    //   if(clickedElement.id === '') {
-    //     menu!.style.display = 'none';
-    //   }
-    // }
-    // this.resetMenus();
-
     for(let menu of this.menuList) {
       menu!.style.display = 'none';
     }
@@ -179,7 +169,6 @@ export class StudioComponent implements OnInit {
   }
 
   resetMenus() {
-
     // Make this less ugly
     let helmetOptions = document.getElementById("helmetOptions");
     let leatherHelmetColorOptions = document.getElementById("leatherHelmetColorOptions");
@@ -340,8 +329,6 @@ export class StudioComponent implements OnInit {
       }
     }
 
-    console.log(configuration)
-
     let dyeColors = Array.from(this.dyes.keys());
     if(dyeColors.includes(option)) {
       configuration.set('dyeColor', option)
@@ -410,7 +397,6 @@ export class StudioComponent implements OnInit {
       }
     }
 
-    console.log(configuration)
     return configuration;
   }
 
@@ -429,6 +415,79 @@ export class StudioComponent implements OnInit {
   server() {
     if(window.location.hostname != "localhost") {
       firebase.analytics().logEvent('server', {});
+    }
+  }
+
+  random() {
+    if(window.location.hostname != "localhost") {
+      firebase.analytics().logEvent('random', {});
+    }
+
+    let smithingTemplates = Object.keys(this.smithingTemplateData);
+    let trimMaterials = Object.keys(this.trimMaterialData);
+    let armorMaterials = Object.values(this.armorPieceData);
+
+    let armorTypes = Object.keys(this.armorPieceData)
+
+    for(let i = 0; i < armorTypes.length; i++) {
+      let armorMaterial = Object.keys(armorMaterials[i]);
+
+      var randomSmithingTemplateIndex = Math.floor(Math.random() * (smithingTemplates.length - 1));
+      let randomSmithingTemplate = smithingTemplates[randomSmithingTemplateIndex];
+
+      var randomArmorMaterialIndex = Math.floor(Math.random() * (armorMaterial.length - 1));
+      let randomArmorMaterial = armorMaterial[randomArmorMaterialIndex];
+
+      let randomDyeColor = '';
+      if(randomArmorMaterial === 'Leather') {
+        let dyeColors = Array.from(this.dyes.keys());
+        var randomLeatherDyeColorIndex = Math.floor(Math.random() * (dyeColors.length + 1));
+        randomDyeColor = dyeColors[randomLeatherDyeColorIndex];
+      }
+
+      var randomTrimMaterialIndex = Math.floor(Math.random() * (trimMaterials.length - 1));
+      let randomTrimMaterial = trimMaterials[randomTrimMaterialIndex];
+
+      if(i == 0) {
+        // HELMET
+        this.clickOption(randomSmithingTemplate, 'smithingTemplateHelmet');
+        this.clickOption(randomArmorMaterial, 'armorMaterialHelmet');
+        this.clickOption(randomTrimMaterial, 'trimMaterialHelmet');
+
+        if(randomArmorMaterial === 'Leather') {
+          this.clickOption(randomDyeColor, 'leatherHelmet');
+        }
+
+      } else if (i == 1) {
+        // CHESTPLATE
+        this.clickOption(randomSmithingTemplate, 'smithingTemplateChestplate');
+        this.clickOption(randomArmorMaterial, 'armorMaterialChestplate');
+        this.clickOption(randomTrimMaterial, 'trimMaterialChestplate');
+
+        if(randomArmorMaterial === 'Leather') {
+          this.clickOption(randomDyeColor, 'leatherChestplate');
+        }
+
+      } else if (i == 2) {
+        // LEGGINGS
+        this.clickOption(randomSmithingTemplate, 'smithingTemplateLeggings');
+        this.clickOption(randomArmorMaterial, 'armorMaterialLeggings');
+        this.clickOption(randomTrimMaterial, 'trimMaterialLeggings');
+
+        if(randomArmorMaterial === 'Leather') {
+          this.clickOption(randomDyeColor, 'leatherLeggings');
+        }
+
+      } else if (i == 3) {
+        // BOOTS
+        this.clickOption(randomSmithingTemplate, 'smithingTemplateBoots');
+        this.clickOption(randomArmorMaterial, 'armorMaterialBoots');
+        this.clickOption(randomTrimMaterial, 'trimMaterialBoots');
+
+        if(randomArmorMaterial === 'Leather') {
+          this.clickOption(randomDyeColor, 'leatherBoots');
+        }
+      } 
     }
   }
 
