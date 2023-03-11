@@ -1,14 +1,42 @@
 {
-    "Coast": "assets/smithing-templates/coast.png",
-    "Dune": "assets/smithing-templates/dune.png",
-    "Eye": "assets/smithing-templates/eye.png",
-    "Rib": "assets/smithing-templates/rib.png",
-    "Sentry": "assets/smithing-templates/sentry.png",
-    "Snout": "assets/smithing-templates/snout.png",
-    "Spire": "assets/smithing-templates/spire.png",
-    "Tide": "assets/smithing-templates/tide.png",
-    "Vex": "assets/smithing-templates/vex.png",
-    "Ward": "assets/smithing-templates/ward.png",
-    "Wild": "assets/smithing-templates/wild.png",
-    "None": "assets/smithing-templates/no_template.png"
+    "Assets": {
+        "Coast": "assets/smithing-templates/coast.png",
+        "Dune": "assets/smithing-templates/dune.png",
+        "Eye": "assets/smithing-templates/eye.png",
+        "Rib": "assets/smithing-templates/rib.png",
+        "Sentry": "assets/smithing-templates/sentry.png",
+        "Snout": "assets/smithing-templates/snout.png",
+        "Spire": "assets/smithing-templates/spire.png",
+        "Tide": "assets/smithing-templates/tide.png",
+        "Vex": "assets/smithing-templates/vex.png",
+        "Ward": "assets/smithing-templates/ward.png",
+        "Wild": "assets/smithing-templates/wild.png",
+        "None": "assets/smithing-templates/no_template.png"
+    },
+    "Structures": {
+        "Coast": "Shipwreck",
+        "Dune": "Desert Temple",
+        "Eye": "Stronghold",
+        "Rib": "Nether Fortress",
+        "Sentry": "Pillager Outpost",
+        "Snout": "Bastion Remnant",
+        "Spire": "End City",
+        "Tide": "Ocean Monument",
+        "Vex": "Woodland Mansion",
+        "Ward": "Ancient City",
+        "Wild": "Jungle Temple"
+    },
+    "Containers": {
+        "Coast": "Treasure Chest, Map Chest, Supply Chest",
+        "Dune": "Chest",
+        "Eye": "Alter Chest, Library Chest",
+        "Rib": "Chest",
+        "Sentry": "Chest",
+        "Snout": "Treasure Chest, Hoglin Stable Chest, Generic Chest, Bridge Chest",
+        "Spire": "Chest",
+        "Tide": "Chest",
+        "Vex": "Chest",
+        "Ward": "Chest",
+        "Wild": "Chest"
+    }
 }

@@ -1,28 +1,28 @@
-<img src = 'assets/background.png' class="w-full z-0 fixed h-full bg-cover bg-black brightness-[0.20]" (click) = "closeMenu()"/>
-<div class="wrapper md:h-screen w-screen flex flex-col bg-[#1A2428]">
-<!-- <div class="wrapper md:h-screen w-screen flex flex-col bg-[#1A2428]" (click) = "closeMenu($event)"> -->
-
-    <div class="text-white fixed w-full h-16 flex">
-        <div class="w-72">
-            <img src = 'assets/logo.png' class="absolute h-10 mt-6 ml-8"/>
+<div class="w-full z-0 fixed h-full" (click) = "closeMenu()"></div>
+<div id='studio' class="wrapper w-screen flex flex-col bg-[#1A2428]">
+    
+    <div class="my-auto flex flex-row z-10">
+        
+        <!-- LEFT SIDE AD -->
+        <div class="w-96 mt-16 my-auto hidden md:flex">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3834753388277526"
+                crossorigin="anonymous">
+            </script>
+            <!-- Left Side -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-3834753388277526"
+                data-ad-slot="7474109806"
+                data-ad-format="auto"
+                data-full-width-responsive="true">
+            </ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
-    </div>
 
-    <div class="mt-24 md:hidden md:w-[800px] w-screen mx-auto relative flex flex-row text-white justify-center">
-        <a href="https://twitter.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer" (click)="contact()">
-            Contact
-        </a>
-        <!-- <a href="https://buymeacoffee.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer" (click)="support()">
-            Support
-        </a> -->
-        <a href="https://billing.apexminecrafthosting.com/aff.php?aff=10545" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition" (click)="server()">
-            Need a Server?
-        </a>
-    </div>
-
-    <div class="my-auto">
-        <div class="studio md:mt-10 mb-6 mt-4 md:w-[800px] w-11/12 mx-auto relative flex flex-col md:flex-row shadow-2xl bg-[#C6C6C6] z-10 border-4 border-white border-b-gray-700 border-r-gray-700">
-            <div class="image md:h-[626px] h-[550px] md:w-[400px] flex align-middle items-center " (click) = "closeMenu()">
+        <div class="studio md:mt-16 pt-6 mb-6 md:w-[800px] w-11/12 mx-auto relative flex flex-col md:flex-row shadow-2xl bg-[#C6C6C6] z-10 border-4 border-white border-b-gray-700 border-r-gray-700">
+            <div class="image sm:h-[626px] h-[360px] md:w-[400px] flex flex-col align-middle items-center" (click) = "closeMenu()">
                 
                 <!-- ANNOUNCEMENT -->
                 <!-- <div class="font-medium mt-4 mb-6">
@@ -30,19 +30,21 @@
                 </div> -->
 
                 <!-- THE ARMOR STAND-->
-                <div class="h-[500px] w-[300px] z-10 bg-[#C6C6C6] mx-auto ">
-                    <img src = 'assets/base-armor/armor_stand.png' class="absolute"/>
-                    <img src = '{{ currentHelmetAsset }}' class="absolute z-50"/>
-                    <img src = '{{ currentHelmetTrimAsset }}' class="absolute z-50"/>
-                    <img src = '{{ currentChestplateAsset }}' class="absolute z-40 mt-[84px]"/>
-                    <img src = '{{ currentChestplateTrimAsset }}' class="absolute z-40 mt-[84px]"/>
-                    <img src = '{{ currentLeggingsAsset }}' class="absolute z-30 mt-[193px]"/>
-                    <img src = '{{ currentLeggingsTrimAsset }}' class="absolute z-30 mt-[193px]"/>
-                    <img src = '{{ currentBootsAsset }}' class="absolute z-20 mt-[349px]"/>
-                    <img src = '{{ currentBootsTrimAsset }}' class="absolute z-20 mt-[349px]"/>
-                    <img src = 'assets/watermark.png' class="absolute h-1.5 z-50 mt-[238px] rotate-[-73deg] ml-[42px]"/>
+                <div class="sm:h-[500px] h-[355px] w-[300px] z-10 sm:mt-10 bg-[#C6C6C6] mx-auto flex justify-center">
+                    <img src = 'assets/base-armor/armor_stand.png' class="image-size"/>
+                    <img src = '{{ currentHelmetAsset }}' class="image-size z-50"/>
+                    <img src = '{{ currentHelmetTrimAsset }}' class="image-size z-50"/>
+                    <img src = '{{ currentChestplateAsset }}' class="image-size z-40 sm:mt-[84px] mt-[58px]"/>
+                    <img src = '{{ currentChestplateTrimAsset }}' class="image-size z-40 sm:mt-[84px] mt-[58px]"/>
+                    <img src = '{{ currentLeggingsAsset }}' class="image-size z-30 sm:mt-[193px] mt-[135px]"/>
+                    <img src = '{{ currentLeggingsTrimAsset }}' class="image-size z-30 sm:mt-[193px] mt-[135px]"/>
+                    <img src = '{{ currentBootsAsset }}' class="image-size z-20 sm:mt-[349px] mt-[245px]"/>
+                    <img src = '{{ currentBootsTrimAsset }}' class="image-size z-20 sm:mt-[349px] mt-[245px]"/>
+                    <img src = 'assets/watermark.png' class="absolute h-1.5 z-50  rotate-[-73deg] sm:mt-[238px] sm:ml-[-153px] mt-[157px] ml-[-102px]"/>
                 </div>
-    
+
+                <!-- <div class="border-4 border-t-gray-700 border-l-gray-700 bg-[#8B8B8B] text-[8px] text-center p-1 mt-3">{{ configurationUrl }}</div> -->
+
             </div>
             <div class="options z-10 md:w-[400px]  bg-[#C6C6C6] ">
                 <div id="optionsContainer" class="flex flex-col h-full justify-center">
@@ -290,7 +292,6 @@
     
                     <!-- HELMET BUTTONS -->
                     <div id="headOptionsContainer">
-                        <!-- <div>Helmet</div> -->
                         <div id="headOptions" class="button-container">
                             <!-- TEMPLATE -->
                             <div class="button button-left">
@@ -314,7 +315,6 @@
     
                     <!-- CHESTPLATE BUTTONS -->
                     <div id="chestplateOptionsContainer">
-                        <!-- <div>Chestplate</div> -->
                         <div id="chestplateOptions" class="button-container">
                             <!-- TEMPLATE -->
                             <div class="button button-left">
@@ -338,7 +338,6 @@
     
                     <!-- LEGGINGS BUTTONS -->
                     <div id="leggingsOptionsContainer">
-                        <!-- <div>Leggings</div> -->
                         <div id="headOptions" class="button-container">
                             <!-- TEMPLATE -->
                             <div class="button button-left">
@@ -362,7 +361,6 @@
     
                     <!-- BOOTS BUTTONS -->
                     <div id="headOptionsContainer">
-                        <!-- <div>Boots</div> -->
                         <div id="bootsOptions" class="button-container">
                             <!-- TEMPLATE -->
                             <div class="button button-left">
@@ -383,23 +381,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-row">
-                        <div class="md:mt-2 md:mb-0 mt-4 mb-10 mr-4 text-center border-4 border-b-gray-700 border-r-gray-700 w-28 py-0.5 cursor-pointer mx-auto hover:bg-gray-300 select-none" id="random" (click)="random()"> Random </div>
-                        <div class="md:mt-2 md:mb-0 mt-4 mb-10 ml-4 text-center border-4 border-b-gray-700 border-r-gray-700 w-28 py-0.5 cursor-pointer mx-auto hover:bg-gray-300 select-none" (click)="resetEvent()"> Clear All </div>
+
+                    <div class="flex flex-col mx-auto text-center mb-4 text-sm">
+                        <!-- <div class="border-4 border-t-gray-700 border-l-gray-700 bg-[#8B8B8B] text-[8px] text-center p-1 mt-3">{{ configurationUrl }}</div> -->
+
+                        <div class="flex flex-row sm:mt-2 md:mb-0 mt-2 sm:mb-10 mb-2 justify-center">
+                            <div class="border-4 border-b-gray-700 border-r-gray-700 w-28 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none sm:mr-2 mr-1" id="random" (click)="random()"> Random </div>
+                            <div class=" border-4 border-b-gray-700 border-r-gray-700 w-28 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none sm:ml-2 ml-1" (click)="resetEvent()"> Clear All </div>
+                        </div>
+
+                        <div class="border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none w-52 sm:mt-2" id="copyConfig" (click)="copyConfigurationUrl()">Copy Configuration URL</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mt-4 md:w-[800px] w-screen mx-auto relative hidden md:flex flex-row text-white justify-center">
-            <a href="https://twitter.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition" (click)="contact()">
-                Contact
-            </a>
-            <!-- <a href="https://buymeacoffee.com/lukeheary" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition" (click)="support()">
-                Support
-            </a> -->
-            <a href="https://billing.apexminecrafthosting.com/aff.php?aff=10545" target="_blank" class="w-44 text-center font-medium cursor-pointer hover:font-bold transition" (click)="server()">
-                Need a Server?
-            </a>
+
+        <!-- RIGHT SIDE AD -->
+        <div class="w-96 mt-16 my-auto hidden md:flex">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3834753388277526"
+                crossorigin="anonymous">
+            </script>
+            <!-- Right Side -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-3834753388277526"
+                data-ad-slot="6125638619"
+                data-ad-format="auto"
+                data-full-width-responsive="true">
+            </ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
     </div>
 </div>

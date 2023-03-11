@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import ArmorPieceData from '../../../assets/armor-pieces.json';
 import SmithingTemplateData from '../../../assets/smithing-templates.json';
 import TrimMaterialData from '../../../assets/trim-materials.json';
@@ -13,10 +14,10 @@ import 'firebase/compat/analytics'
 })
 export class StudioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   public armorPieceData = ArmorPieceData;
-  public smithingTemplateData = SmithingTemplateData;
+  public smithingTemplateData = SmithingTemplateData['Assets'];
   public trimMaterialData = TrimMaterialData;
   public dyeData = DyeData;
 
@@ -46,6 +47,8 @@ export class StudioComponent implements OnInit {
 
   public menuList:HTMLElement[];
 
+  public configurationUrl = ';'
+
   ngOnInit(): void {
     this.setCurrentConfigurations();
 
@@ -56,6 +59,97 @@ export class StudioComponent implements OnInit {
 
     this.setMenuList();
     this.reset();
+
+    this.readQueryParams();
+  }
+
+  readQueryParams() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if(params) {
+        const helmet = params['h'];
+        const chestplate = params['c'];
+        const leggings = params['l'];
+        const boots = params['b'];
+  
+        this.setConfig(helmet, this.helmetAssets, 'Helmet');
+        this.setConfig(chestplate, this.chestplateAssets, 'Chestplate');
+        this.setConfig(leggings, this.leggingsAssets, 'Leggings');
+        this.setConfig(boots, this.bootsAssets, 'Boots');
+      }
+    });
+  }
+
+  setConfig(config: string, assets: Map<string, string>, armor: string) {
+    // TEST: http://localhost:4200/?h=6:3-6:1&c=1:4:5&l=1:3-8:1&b=2:4:3
+
+    if(config) {
+      let configArray = config.split(':');
+      let templateIndex = Number(configArray[0]);
+      let smithingTemplate = Array.from(this.smithingTemplates.keys())[templateIndex];
+      this.clickOption(smithingTemplate, 'smithingTemplate' + armor);
+
+      // ARMOR PIECES
+      if(configArray[1].includes('-')) {
+        let armorArray = configArray[1].split('-')
+        let armorIndex = Number(armorArray[0]);
+        let armorPiece = Array.from(assets.keys())[armorIndex];
+        this.clickOption(armorPiece, 'armorMaterial' + armor);
+
+
+        let dyeIndex = Number(armorArray[1]);
+        let dye = Array.from(this.dyes.keys())[dyeIndex];
+        this.clickOption(dye, 'leather' + armor);
+
+      } else {
+        let armorIndex = Number(configArray[1]);
+        let armorPiece = Array.from(assets.keys())[armorIndex];
+        this.clickOption(armorPiece, 'armorMaterial' + armor);
+      }
+
+      // TRIM MATERIALS
+      let trimIndex = Number(configArray[2]);
+      let trimMaterial = Array.from(this.trimMaterials.keys())[trimIndex];
+      this.clickOption(trimMaterial, 'trimMaterial' + armor);
+    }
+  }
+
+  generateConfigLink() {
+    let link = ''
+    if(window.location.hostname === "localhost") {
+      link = 'http://localhost:4200/'
+    } else {
+      link = 'https://armortrims.com/';
+    }
+
+    link += '?' + this.getConfig(this.currentHelmetConfiguration, this.helmetAssets, 'h');
+    link += '&' +this.getConfig(this.currentChestplateConfiguration, this.chestplateAssets, 'c');
+    link += '&' +this.getConfig(this.currentLeggingsConfiguration, this.leggingsAssets, 'l');
+    link += '&' +this.getConfig(this.currentBootsConfiguration, this.bootsAssets, 'b');
+
+    this.configurationUrl = link;
+  }
+
+  getConfig(config: Map<string, string>, armorAssets: Map<string, string>, paramName: string) {
+
+    let queryParam = ''
+
+    let template = config.get('smithingTemplate')!;
+    let armor = config.get('armorMaterial')!;
+    let trim = config.get('trimMaterial')!;
+    let dye = config.get('dyeColor')!;
+
+    let templateIndex = Array.from(this.smithingTemplates.keys()).indexOf(template)
+    let armorIndex = Array.from(armorAssets.keys()).indexOf(armor)
+    let trimIndex = Array.from(this.trimMaterials.keys()).indexOf(trim)
+    
+    if(armor === 'Leather' && dye !== 'None') {
+      let dyeIndex = Array.from(this.dyes.keys()).indexOf(dye)
+      queryParam += paramName + '=' + templateIndex + ':' + armorIndex + '-' + dyeIndex + ':' + trimIndex;
+    } else {
+      queryParam += paramName + '=' + templateIndex + ':' + armorIndex + ':' + trimIndex;
+    }
+
+    return queryParam;
   }
 
   setCurrentConfigurations() {
@@ -294,6 +388,8 @@ export class StudioComponent implements OnInit {
       armorAsset !== 'None' ? this.currentBootsAsset = armorAsset : this.currentBootsAsset = ""
       trimAsset !== 'None' ? this.currentBootsTrimAsset = trimAsset : this.currentBootsTrimAsset = ""
     }
+
+    this.generateConfigLink();
   }
 
   updateConfigurationLogic(option:string, type:string, armor:string, configuration:Map<string, string>) {
@@ -400,21 +496,17 @@ export class StudioComponent implements OnInit {
     return configuration;
   }
 
-  support() {
-    if(window.location.hostname != "localhost") {
-      firebase.analytics().logEvent('support', {});
-    }
-  }
+  copyConfigurationUrl() {
+    navigator.clipboard.writeText(this.configurationUrl);
+    let button = document.getElementById('copyConfig');
+    button!.innerHTML = "URL Copied!";
 
-  contact() {
-    if(window.location.hostname != "localhost") {
-      firebase.analytics().logEvent('contact', {});
-    }
-  }
+    setTimeout(function() {
+      button!.innerHTML = "Copy Configuration URL";
+    },1500)
 
-  server() {
     if(window.location.hostname != "localhost") {
-      firebase.analytics().logEvent('server', {});
+      firebase.analytics().logEvent('copy_url', {});
     }
   }
 
@@ -528,5 +620,7 @@ export class StudioComponent implements OnInit {
         text!.innerHTML = 'None';
       }
     }
+
+    this.generateConfigLink();
   }
 }

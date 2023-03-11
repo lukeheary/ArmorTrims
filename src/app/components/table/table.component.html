@@ -1,0 +1,27 @@
+<div id='table' class="wrapper w-screen flex flex-col bg-[#1A2428] mb-10">
+    <div class="studio mb-0 md:mb-6 md:w-[800px] w-11/12 mx-auto relative flex flex-col md:flex-row shadow-2xl bg-[#C6C6C6] z-10 border-4 border-white border-b-gray-700 border-r-gray-700">
+        
+        <table class="">
+            <tr>
+              <th class="w-1/12">Smithing Template</th>
+              <th class="w-3/12">Structure</th>
+              <th class="w-8/12">Container</th>
+            </tr>
+
+            <tr class="w-full" *ngFor = 'let template of templateObjects'>
+                <td class="w-3/12 py-1">
+                    <img src = '{{ template.asset }}' class="menu-option-image"/>
+                    <div class="text-center">{{template.name}}</div>
+                </td>
+
+                <td class="w-3/12">
+                    <div class="text-center">{{template.structure}}</div>
+                </td>
+
+                <td class="w-2/12">
+                    <div class="text-center">{{template.container}}</div>
+                </td>
+            </tr>   
+        </table>
+    </div>
+</div>
