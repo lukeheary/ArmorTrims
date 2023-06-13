@@ -13,7 +13,7 @@
     }
 
     .button-image {
-      @apply sm:h-24 sm:w-24 h-16 w-16 p-2.5 border-4 border-t-gray-700 border-l-gray-700 cursor-pointer bg-[#8B8B8B] hover:bg-gray-400
+      @apply sm:h-24 sm:w-24 h-16 w-16 p-2.5 border-4 border-t-gray-700 border-l-gray-700 cursor-pointer bg-[#9f9f9f] hover:bg-gray-400
     }
     .button-text {
       @apply sm:h-8 h-2 my-auto justify-center align-middle text-center text-xs sm:pt-1 hidden sm:block
@@ -25,10 +25,10 @@
       @apply w-full inline-flex justify-center pb-1 pt-1
     }
     .button-left {
-      @apply sm:mr-2 ml-12
+      @apply sm:mr-4 ml-12 -mr-8
     }
     .button-right {
-      @apply sm:ml-2 mr-12
+      @apply sm:ml-4 mr-12 -ml-8
     }
 
     .image-size {
@@ -36,23 +36,23 @@
     }
 
     .menu-shadow {
-      @apply hidden drop-shadow-2xl
+      @apply drop-shadow-2xl hidden
     }
     .menu {
-      @apply sm:h-[650px] sm:mt-[-24px] h-[400px] pb-4 shadow-2xl bg-[#C6C6C6] border-4 border-white border-b-gray-700 border-r-gray-700 z-50 md:w-[400px] my-auto overflow-scroll
+      @apply sm:h-[650px] sm:w-[460px] w-full sm:mt-[16px] h-[400px] pb-4 shadow-2xl bg-[#C6C6C6] border-4 border-white border-b-gray-700 border-r-gray-700 z-50 my-auto overflow-scroll
     }
     .menu-label {
-      @apply text-center text-lg pt-10 pb-4 md:pb-0
+      @apply text-center text-sm pt-6 pb-4 md:pb-0 font-bold
     }
 
     .menu-options-container {
       @apply mx-auto flex flex-wrap justify-center md:p-4
     }
     .menu-options-image-and-text {
-      @apply  sm:h-28 sm:w-28 h-[86px] w-20 text-center border-4 border-t-gray-700 border-l-gray-700 cursor-pointer bg-[#8B8B8B] text-xs text-gray-300 hover:bg-gray-400
+      @apply  sm:h-[104px] sm:w-[104px] h-[106px] w-[90px] text-black text-center bg-[#9f9f9f] border-4 border-t-gray-700 border-l-gray-700 cursor-pointer text-xs hover:bg-gray-400
     }
     .menu-option-image {
-      @apply sm:h-20 sm:w-20 h-14 w-14 mx-auto p-2 mt-1 transition 
+      @apply sm:h-[70px] sm:w-[70px] h-14 w-14 mx-auto p-2 mt-1 transition 
     }
 
     /** Table **/
@@ -60,11 +60,4 @@
     table {
       @apply text-left m-6
     }
-
-    th {
-      @apply border-2 border-gray-700 border-collapse py-2 text-center
-    }
-    td {
-      @apply border-2 border-gray-700 border-collapse
-    } 
   }

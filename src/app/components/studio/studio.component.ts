@@ -95,10 +95,19 @@ export class StudioComponent implements OnInit {
         let armorPiece = Array.from(assets.keys())[armorIndex];
         this.clickOption(armorPiece, 'armorMaterial' + armor);
 
-
         let dyeIndex = Number(armorArray[1]);
         let dye = Array.from(this.dyes.keys())[dyeIndex];
         this.clickOption(dye, 'leather' + armor);
+
+      } else if (configArray[1] === '3') {
+        let armorArray = configArray[1].split('-')
+        let armorIndex = Number(armorArray[0]);
+        let armorPiece = Array.from(assets.keys())[armorIndex];
+        this.clickOption(armorPiece, 'armorMaterial' + armor);
+
+        let dye = Array.from(this.dyes.keys())[2];
+        this.clickOption(dye, 'leather' + armor);
+
 
       } else {
         let armorIndex = Number(configArray[1]);
@@ -130,7 +139,6 @@ export class StudioComponent implements OnInit {
   }
 
   getConfig(config: Map<string, string>, armorAssets: Map<string, string>, paramName: string) {
-
     let queryParam = ''
 
     let template = config.get('smithingTemplate')!;
@@ -447,12 +455,12 @@ export class StudioComponent implements OnInit {
         configuration.set('trimAsset', 'None')
 
       } else {
-
         if(trimMaterial !== 'None') {
           if(armor === 'Chestplate' && (armorMaterial === 'Golden' || armorMaterial === 'Diamond' || armorMaterial === 'Iron')) {
             assetPath = 'assets/trims/metalchestplates/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
             configuration.set('trimAsset', assetPath);
           } else {
+
             assetPath = 'assets/trims/' + armor.toLowerCase() + '/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
             configuration.set('trimAsset', assetPath);
           }
@@ -462,8 +470,13 @@ export class StudioComponent implements OnInit {
     // ON ARMOR MATERIAL CHANGE
     } else if (dyeColors.includes(option) || type.startsWith('armorMaterial')) {
       if(trimMaterial !== 'None') {
+        if(armor === 'Chestplate' && (armorMaterial === 'Golden' || armorMaterial === 'Diamond' || armorMaterial === 'Iron')) {
+          assetPath = 'assets/trims/metalchestplates/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
+          configuration.set('trimAsset', assetPath);
+        } else {
         assetPath = 'assets/trims/' + armor.toLowerCase() + '/' + smithingTemplate?.toLowerCase() + '/' +  smithingTemplate + '_' + trimMaterial + '.png'
         configuration.set('trimAsset', assetPath);
+        }
       }
 
       if(dyeColors.includes(option)) {
@@ -533,7 +546,7 @@ export class StudioComponent implements OnInit {
       let randomDyeColor = '';
       if(randomArmorMaterial === 'Leather') {
         let dyeColors = Array.from(this.dyes.keys());
-        var randomLeatherDyeColorIndex = Math.floor(Math.random() * (dyeColors.length + 1));
+        var randomLeatherDyeColorIndex = Math.floor(Math.random() * (dyeColors.length - 1));
         randomDyeColor = dyeColors[randomLeatherDyeColorIndex];
       }
 
