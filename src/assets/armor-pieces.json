@@ -1,5 +1,6 @@
 {
     "Helmet": {
+        "Chainmail": "assets/armor-pieces/chainmail_helmet.png",
         "Diamond": "assets/armor-pieces/diamond_helmet.png",
         "Golden": "assets/armor-pieces/golden_helmet.png",
         "Iron": "assets/armor-pieces/iron_helmet.png",
@@ -9,6 +10,7 @@
         "None": "assets/armor-pieces/no_helmet.png"
     },
     "Chestplate": {
+        "Chainmail": "assets/armor-pieces/chainmail_chestplate.png",
         "Diamond": "assets/armor-pieces/diamond_chestplate.png",
         "Golden": "assets/armor-pieces/golden_chestplate.png",
         "Iron": "assets/armor-pieces/iron_chestplate.png",
@@ -17,6 +19,7 @@
         "None": "assets/armor-pieces/no_chestplate.png"
     },
     "Leggings": {
+        "Chainmail": "assets/armor-pieces/chainmail_leggings.png",
         "Diamond": "assets/armor-pieces/diamond_leggings.png",
         "Golden": "assets/armor-pieces/golden_leggings.png",
         "Iron": "assets/armor-pieces/iron_leggings.png",
@@ -25,6 +28,7 @@
         "None": "assets/armor-pieces/no_leggings.png"
     },
     "Boots": {
+        "Chainmail": "assets/armor-pieces/chainmail_boots.png",
         "Diamond": "assets/armor-pieces/diamond_boots.png",
         "Golden": "assets/armor-pieces/golden_boots.png",
         "Iron": "assets/armor-pieces/iron_boots.png",

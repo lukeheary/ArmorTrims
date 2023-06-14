@@ -11,11 +11,7 @@ export class TableComponent implements OnInit {
   constructor() { }
 
   public smithingTemplateData = SmithingTemplateData;
-
-  // public smithingTemplates: Map<string, string> = new Map<string, string>();
-
   public templateObjects = new Array();
-
 
   ngOnInit(): void {
     this.populateSmithingTemplates();
@@ -26,6 +22,7 @@ export class TableComponent implements OnInit {
     let templateAssets = Object.values(this.smithingTemplateData['Assets']);
     let templateStructures = Object.values(this.smithingTemplateData['Structures']);
     let templateContainers = Object.values(this.smithingTemplateData['Containers']);
+    let templateDuplication = Object.values(this.smithingTemplateData['Duplication']);
 
 
     for(let i = 0; i < templateNames.length; i++) {
@@ -35,6 +32,7 @@ export class TableComponent implements OnInit {
         templateObject.asset = templateAssets[i]
         templateObject.structure = templateStructures[i]
         templateObject.container = templateContainers[i]
+        templateObject.duplication = templateDuplication[i]
 
         this.templateObjects.push(templateObject)
       }
@@ -47,6 +45,5 @@ class SmithingTemplate {
   public asset:string;
   public structure:string;
   public container:string;
-  public quantity:string;
-  public chance:string;
+  public duplication:string;
 }

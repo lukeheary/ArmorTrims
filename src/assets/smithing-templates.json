@@ -42,8 +42,8 @@
         "Eye": "The Eye smithing template can be found in Strongholds.",
         "Host": "The Host smithing template can be found in Suspicious Gravel and Suspicious Sand.",
         "Raiser": "The Raiser smithing template can be found in Suspicious Gravel and Suspicious Sand.",
-        "Rib": "The Rib smithing template can be found in Nether Fortresses",
-        "Sentry": "The Sentry smithing template can be found in chests in Pillager Outposts",
+        "Rib": "The Rib smithing template can be found in Nether Fortresses.",
+        "Sentry": "The Sentry smithing template can be found in chests in Pillager Outposts.",
         "Shaper": "The Shaper smithing template can be found in Suspicious Gravel and Suspicious Sand.",
         "Silence": "The Silence smithing template can be found in Ancient Cities.",
         "Snout": "The Snout smithing template can be found in Bastion Remnants.",
@@ -53,5 +53,24 @@
         "Ward": "The Ward smithing template can be found in Ancient Cities.",
         "Wayfinder": "The Wayfinder smithing template can be found in Suspicious Gravel and Suspicious Sand.",
         "Wild": "The Wild smithing template can be found in Jungle Temples."
+    }, 
+
+    "Duplication": {
+        "Coast": "Cobblestone",
+        "Dune": "Sandstone",
+        "Eye": "End Stone",
+        "Host": "Terracotta",
+        "Raiser": "Terracotta",
+        "Rib": "Netherrack",
+        "Sentry": "Cobblestone",
+        "Shaper": "Terracotta",
+        "Silence": "Cobbled Deepslate",
+        "Snout": "Blackstone",
+        "Spire": "Purpur",
+        "Tide": "Prismarine",
+        "Vex": "Cobblestone",
+        "Ward": "Cobbled Deepslate",
+        "Wayfinder": "Terracotta",
+        "Wild": "Mossy Cobblestone"
     }
 }

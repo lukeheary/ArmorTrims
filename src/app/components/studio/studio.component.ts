@@ -227,8 +227,27 @@ export class StudioComponent implements OnInit {
 
   openMenu(menuClicked:string) {
     let menu = document.getElementById(menuClicked);
-    menu!.style.display = 'block';
-    menu!.classList.add('absolute')
+    menu!.scroll(0,0);
+    menu!.style.transition = '0.3s';
+    menu!.style.top = '0px';
+  }
+
+  closeMenu(e: Event | null) {
+    if (e) {
+      let clickedElement = (e.target) as HTMLImageElement
+      let image = clickedElement.src as String
+
+      console.log(clickedElement)
+
+      if (image === undefined || !image.includes('leather')) {
+        for(let menu of this.menuList) {
+          menu!.scrollTop = 0;
+          menu!.style.transition = '0.3s';
+          menu!.style.top = '670px';
+        }
+        this.resetMenus();
+      }
+    }
   }
 
   setMenuList() {
@@ -261,13 +280,6 @@ export class StudioComponent implements OnInit {
       armorMaterialLeggingsMenu!, 
       armorMaterialBootsMenu!, 
       ];
-  }
-  
-  closeMenu() {
-    for(let menu of this.menuList) {
-      menu!.style.display = 'none';
-    }
-    this.resetMenus();
   }
 
   resetMenus() {
@@ -353,7 +365,7 @@ export class StudioComponent implements OnInit {
     }
 
     if(option !== 'Leather') {
-      this.closeMenu()
+      this.closeMenu(null)
     }
 
     if (image && text) {
@@ -363,6 +375,8 @@ export class StudioComponent implements OnInit {
   }
 
   updateConfiguration(option:string, type:string) {
+    console.log(option, type)
+
     if(type.includes('Helmet')) {
       this.currentHelmetConfiguration = this.updateConfigurationLogic(option, type, 'Helmet', this.currentHelmetConfiguration);
 

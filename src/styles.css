@@ -9,50 +9,50 @@
 @layer components {
 
     .header-link {
-      @apply w-6/12 py-2 px-6 text-center font-medium cursor-pointer transition hover:text-slate-200 text-white
+      @apply w-32 py-0.5 sm:px-6 px-2 text-right font-medium cursor-pointer transition hover:text-slate-200 text-white mr-4
     }
 
     .button-image {
-      @apply sm:h-24 sm:w-24 h-16 w-16 p-2.5 border-4 border-t-gray-700 border-l-gray-700 cursor-pointer bg-[#9f9f9f] hover:bg-gray-400
+      @apply sm:h-24 sm:w-24 h-[60px] w-[60px] p-2.5 border-4 border-t-gray-700 border-l-gray-700 cursor-pointer bg-[#9f9f9f] hover:bg-gray-400
     }
     .button-text {
       @apply sm:h-8 h-2 my-auto justify-center align-middle text-center text-xs sm:pt-1 hidden sm:block
     }
     .button {
-      @apply sm:h-30 h-16 w-28 flex flex-col items-center
+      @apply sm:h-30 h-[60px] w-28 flex flex-col items-center
     }
     .button-container {
-      @apply w-full inline-flex justify-center pb-1 pt-1
+      @apply w-full inline-flex justify-center
     }
     .button-left {
-      @apply sm:mr-4 ml-12 -mr-8
+      @apply sm:mr-4 ml-12 -mr-11
     }
     .button-right {
-      @apply sm:ml-4 mr-12 -ml-8
+      @apply sm:ml-4 mr-12 -ml-11
     }
 
     .image-size {
-      @apply sm:w-[300px] w-[210px] absolute mx-auto
+      @apply sm:w-[300px] w-[210px] sm:block absolute mx-auto
     }
 
     .menu-shadow {
-      @apply drop-shadow-2xl hidden
+      @apply absolute sm:top-[670px] top-[370px]
     }
     .menu {
-      @apply sm:h-[650px] sm:w-[460px] w-full sm:mt-[16px] h-[400px] pb-4 shadow-2xl bg-[#C6C6C6] border-4 border-white border-b-gray-700 border-r-gray-700 z-50 my-auto overflow-scroll
+      @apply sm:h-[500px] sm:w-[411px] w-full sm:mt-[16px] h-[368px] pb-4 bg-[#C6C6C6] sm:border-none border-t-4 border-t-white rounded-b-lg z-50 my-auto overflow-scroll
     }
     .menu-label {
-      @apply text-center text-sm pt-6 pb-4 md:pb-0 font-bold
+      @apply text-center text-sm sm:pt-6 sm:pb-4 py-4 md:pb-0 font-bold
     }
 
     .menu-options-container {
-      @apply mx-auto flex flex-wrap justify-center md:p-4
+      @apply mx-auto flex flex-wrap justify-center md:p-4 px-2 sm:mb-0 mb-12
     }
     .menu-options-image-and-text {
-      @apply  sm:h-[104px] sm:w-[104px] h-[106px] w-[90px] text-black text-center bg-[#9f9f9f] border-4 border-t-gray-700 border-l-gray-700 cursor-pointer text-xs hover:bg-gray-400
+      @apply  sm:h-[104px] sm:w-[104px] h-[106px] w-[106px] text-black text-center bg-[#9f9f9f] border-4 border-t-gray-700 border-l-gray-700 cursor-pointer text-xs hover:bg-gray-400
     }
     .menu-option-image {
-      @apply sm:h-[70px] sm:w-[70px] h-14 w-14 mx-auto p-2 mt-1 transition 
+      @apply sm:h-[70px] sm:w-[70px] h-16 w-16 mx-auto p-2 mt-1 transition 
     }
 
     /** Table **/

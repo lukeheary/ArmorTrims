@@ -1,9 +1,9 @@
-<div class="w-full z-0 fixed h-full" (click) = "closeMenu()"></div>
+<div class="w-full z-0 fixed h-full" (click) = "closeMenu($event)"></div>
 <div id='studio' class="wrapper w-screen flex flex-col bg-[#1A2428]">
     <div class="my-auto flex flex-row z-10">
-        <div class="studio md:mt-8 sm:pt-5 pt-2 mb-12 md:w-[820px] w-full mx-auto relative flex flex-col md:flex-col shadow-2xl bg-[#C6C6C6] z-10 border-y-4 md:border-4 md:border-t-white md:border-l-white border-b-gray-700 md:border-r-gray-700">
+        <div class="studio md:mt-8 mt-2 mb-12 md:w-[820px] w-11/12 rounded-xl mx-auto relative flex flex-col md:flex-col shadow-2xl bg-[#C6C6C6] z-10 border-4 border-white">
             <div class="flex md:flex-row w-full flex-col">
-                <div class="image sm:h-[560px] h-[340px] md:w-[400px] sm:pt-[25px] flex flex-col align-middle items-center" (click) = "closeMenu()">
+                <div class="image sm:h-[560px] h-[340px] md:w-[400px] sm:pt-[25px] flex flex-col align-middle items-center" (click) = "closeMenu($event)">
                 
                     <!-- ANNOUNCEMENT -->
                     <!-- <div class="font-medium mt-2">
@@ -11,7 +11,7 @@
                     </div> -->
     
                     <!-- THE ARMOR STAND-->
-                    <div class="sm:h-[500px] h-[355px] w-[300px] z-10 mt-4 bg-[#C6C6C6] mx-auto flex justify-center">
+                    <div class="sm:h-[500px] h-[355px] w-[300px] z-10 sm:mt-4 bg-[#C6C6C6] mx-auto flex justify-center">
                         <img src = 'assets/base-armor/armor_stand.png' class="image-size"/>
                         <img src = '{{ currentHelmetAsset }}' class="image-size z-50"/>
                         <img src = '{{ currentHelmetTrimAsset }}' class="image-size z-50"/>
@@ -25,13 +25,13 @@
                     </div>
     
                 </div>
-                <div class="options z-10 mt-6 md:w-[400px]  bg-[#C6C6C6] ">
-                    <div id="optionsContainer" class="flex flex-col h-full justify-center">
+                <div class="options z-10 sm:mt-6 md:w-[400px] bg-[#C6C6C6] rounded-xl">
+                    <div id="optionsContainer" class="flex flex-col h-full justify-center overflow-hidden relative">
         
                         <!-- HELMET SMITHING TEMPLATE MENU -->
-                        <div id = 'smithingTemplateHelmetMenu' class="menu-shadow">
-                            <div class="menu">
-                            <div class="menu-label">Smithing Templates</div> 
+                        <div id = 'smithingTemplateHelmetMenu' class="menu-shadow" >
+                            <div class="menu" (click) = "closeMenu($event)">
+                                <div class="menu-label">Smithing Templates</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let template of smithingTemplates | keyvalue'>
                                         <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateHelmet")'> 
@@ -46,7 +46,7 @@
                         </div>
                         <!-- CHESTPLATE SMITHING TEMPLATE MENU -->
                         <div id = 'smithingTemplateChestplateMenu' class="menu-shadow">
-                            <div class="menu">
+                            <div class="menu" (click) = "closeMenu($event)">
                             <div class="menu-label">Smithing Templates</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let template of smithingTemplates | keyvalue'>
@@ -62,8 +62,8 @@
                         </div>
                         <!-- LEGGINGS SMITHING TEMPLATE MENU -->
                         <div id = 'smithingTemplateLeggingsMenu' class="menu-shadow">
-                            <div class="menu">
-                            <div class="menu-label">Smithing Templates</div> 
+                            <div class="menu" (click) = "closeMenu($event)">
+                                <div class="menu-label">Smithing Templates</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let template of smithingTemplates | keyvalue'>
                                         <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateLeggings")'> 
@@ -78,8 +78,8 @@
                         </div>
                         <!-- BOOTS SMITHING TEMPLATE MENU -->
                         <div id = 'smithingTemplateBootsMenu' class="menu-shadow">
-                            <div class="menu">
-                            <div class="menu-label">Smithing Templates</div> 
+                            <div class="menu" (click) = "closeMenu($event)">
+                                <div class="menu-label">Smithing Templates</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let template of smithingTemplates | keyvalue'>
                                         <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateBoots")'> 
@@ -94,10 +94,9 @@
                         </div>
                         <!-- HELMET MATERIAL MENU -->
                         <div id = 'armorMaterialHelmetMenu' class="menu-shadow">
-                            <div class="menu">
+                            <div class="menu" (click) = "closeMenu($event)">
                                 <div class="menu-label">Helmet Materials</div> 
                                 <div class="menu-options-container" id="helmetOptions">
-    
                                     <div *ngFor = 'let helmet of helmetAssets | keyvalue'>
                                         <div class="menu-options-image-and-text" (click)='clickOption(helmet.key, "armorMaterialHelmet")'> 
                                             <div>
@@ -122,7 +121,7 @@
                         </div>
                         <!-- CHESTPLATE MATERIAL MENU -->
                         <div id = 'armorMaterialChestplateMenu' class="menu-shadow">
-                            <div class="menu">
+                            <div class="menu" (click) = "closeMenu($event)">
                                 <div class="menu-label">Chestplate Materials</div> 
                                 <div class="menu-options-container" id="chestplateOptions">
                                     <div *ngFor = 'let chestplate of chestplateAssets | keyvalue'>
@@ -150,7 +149,7 @@
                         </div>
                         <!-- LEGGINGS MATERIAL MENU -->
                         <div id = 'armorMaterialLeggingsMenu' class="menu-shadow">
-                            <div class="menu">
+                            <div class="menu" (click) = "closeMenu($event)">
                                 <div class="menu-label">Leggings Materials</div> 
                                 <div class="menu-options-container" id="leggingsOptions">
                                     <div *ngFor = 'let leggings of leggingsAssets | keyvalue'>
@@ -178,7 +177,7 @@
                         </div>
                         <!-- BOOTS MATERIAL MENU -->
                         <div id = 'armorMaterialBootsMenu' class="menu-shadow">
-                            <div class="menu">
+                            <div class="menu" (click) = "closeMenu($event)">
                                 <div class="menu-label">Boots Materials</div> 
                                 <div class="menu-options-container" id="bootsOptions">
                                     <div *ngFor = 'let boots of bootsAssets | keyvalue'>
@@ -206,7 +205,7 @@
                         </div>
                         <!-- HELMET TRIM MATERIAL MENU -->
                         <div id = 'trimMaterialHelmetMenu' class="menu-shadow">
-                            <div class="menu">
+                            <div class="menu" (click) = "closeMenu($event)">
                                 <div class="menu-label">Trim Materials</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
@@ -222,7 +221,7 @@
                         </div>
                         <!-- CHESTPLATE TRIM MATERIAL MENU -->
                         <div id = 'trimMaterialChestplateMenu' class="menu-shadow">
-                            <div class="menu">
+                            <div class="menu" (click) = "closeMenu($event)">
                                 <div class="menu-label">Trim Materials</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
@@ -238,7 +237,7 @@
                         </div>
                         <!-- LEGGINGS TRIM MATERIAL MENU -->
                         <div id = 'trimMaterialLeggingsMenu' class="menu-shadow">
-                            <div class="menu">
+                            <div class="menu" (click) = "closeMenu($event)">
                                 <div class="menu-label">Trim Materials</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
@@ -254,7 +253,7 @@
                         </div>
                         <!-- BOOTS TRIM MATERIAL MENU -->
                         <div id = 'trimMaterialBootsMenu' class="menu-shadow">
-                            <div class="menu">
+                            <div class="menu" (click) = "closeMenu($event)">
                                 <div class="menu-label">Trim Materials</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
@@ -361,14 +360,11 @@
                             </div>
                         </div>
     
-                        <div class="flex sm:hidden flex-col mx-auto text-center mb-4 text-sm">
-                            <div class="flex flex-row sm:mt-2 md:mb-0 mt-2 sm:mb-10 mb-2 justify-center">
-                                <div class="border-4 border-b-gray-700 border-r-gray-700 w-28 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none sm:mr-2 mr-1" id="random" (click)="random()"> Random </div>
-                                <div class=" border-4 border-b-gray-700 border-r-gray-700 w-28 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none sm:ml-2 ml-1" (click)="resetEvent()"> Clear All </div>
+                            <div class="flex flex-row sm:mt-2 md:mb-0 mt-2 sm:mb-10 justify-center sm:hidden text-center mb-3 text-sm">
+                                <div class="border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none ml-8 px-2 w-24" id="random" (click)="random()"> Random </div>
+                                <div class=" border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none px-2 w-20" (click)="resetEvent()"> Clear </div>
+                                <div class="border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none mr-8 px-2 w-24" id="copyConfig" (click)="copyConfigurationUrl()">Copy URL</div>
                             </div>
-    
-                            <div class="border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none w-52 sm:mt-2" id="copyConfig" (click)="copyConfigurationUrl()">Copy Configuration URL</div>
-                        </div>
                     </div>
                 </div>
             </div>
