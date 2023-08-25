@@ -49,6 +49,11 @@ export class StudioComponent implements OnInit {
 
   public configurationUrl = ';'
 
+  public tempImage: any;
+  public tempText: any;
+  public tempOption: any;
+  public tempAsset: any;
+
   ngOnInit(): void {
     this.setCurrentConfigurations();
 
@@ -86,39 +91,39 @@ export class StudioComponent implements OnInit {
       let configArray = config.split(':');
       let templateIndex = Number(configArray[0]);
       let smithingTemplate = Array.from(this.smithingTemplates.keys())[templateIndex];
-      this.clickOption(smithingTemplate, 'smithingTemplate' + armor);
+      this.clickOption(smithingTemplate, 'smithingTemplate' + armor, false);
 
       // ARMOR PIECES
       if(configArray[1].includes('-')) {
         let armorArray = configArray[1].split('-')
         let armorIndex = Number(armorArray[0]);
         let armorPiece = Array.from(assets.keys())[armorIndex];
-        this.clickOption(armorPiece, 'armorMaterial' + armor);
+        this.clickOption(armorPiece, 'armorMaterial' + armor, false);
 
         let dyeIndex = Number(armorArray[1]);
         let dye = Array.from(this.dyes.keys())[dyeIndex];
-        this.clickOption(dye, 'leather' + armor);
+        this.clickOption(dye, 'leather' + armor, false);
 
       } else if (configArray[1] === '3') {
         let armorArray = configArray[1].split('-')
         let armorIndex = Number(armorArray[0]);
         let armorPiece = Array.from(assets.keys())[armorIndex];
-        this.clickOption(armorPiece, 'armorMaterial' + armor);
+        this.clickOption(armorPiece, 'armorMaterial' + armor, false);
 
         let dye = Array.from(this.dyes.keys())[2];
-        this.clickOption(dye, 'leather' + armor);
+        this.clickOption(dye, 'leather' + armor, false);
 
 
       } else {
         let armorIndex = Number(configArray[1]);
         let armorPiece = Array.from(assets.keys())[armorIndex];
-        this.clickOption(armorPiece, 'armorMaterial' + armor);
+        this.clickOption(armorPiece, 'armorMaterial' + armor, false);
       }
 
       // TRIM MATERIALS
       let trimIndex = Number(configArray[2]);
       let trimMaterial = Array.from(this.trimMaterials.keys())[trimIndex];
-      this.clickOption(trimMaterial, 'trimMaterial' + armor);
+      this.clickOption(trimMaterial, 'trimMaterial' + armor, false);
     }
   }
 
@@ -237,8 +242,6 @@ export class StudioComponent implements OnInit {
       let clickedElement = (e.target) as HTMLImageElement
       let image = clickedElement.src as String
 
-      console.log(clickedElement)
-
       if (image === undefined || !image.includes('leather')) {
         for(let menu of this.menuList) {
           menu!.scrollTop = 0;
@@ -306,7 +309,7 @@ export class StudioComponent implements OnInit {
 
   }
 
-  clickOption(option:string, type:string) {
+  clickOption(option:string, type:string, random:boolean) {
     let image = document.getElementById(type + "Image");
     let text = document.getElementById(type + "Text");
     let templateAsset = '';
@@ -317,19 +320,15 @@ export class StudioComponent implements OnInit {
       if(type.includes("Helmet")) {
         options = 'helmetOptions';
         colorOptions = 'leatherHelmetColorOptions';
-        this.currentHelmetConfiguration.set('armorMaterial', 'Leather');
       } else if(type.includes("Chestplate")) {
         options = 'chestplateOptions';
         colorOptions = 'leatherChestplateColorOptions';
-        this.currentChestplateConfiguration.set('armorMaterial', 'Leather');
       } else if(type.includes("Leggings")) {
         options = 'leggingsOptions';
         colorOptions = 'leatherLeggingsColorOptions';
-        this.currentLeggingsConfiguration.set('armorMaterial', 'Leather');
       } else if(type.includes("Boots")) {
         options = 'bootsOptions';
         colorOptions = 'leatherBootsColorOptions';
-        this.currentBootsConfiguration.set('armorMaterial', 'Leather');
       }
 
       let optionsDiv = document.getElementById(options);
@@ -368,15 +367,32 @@ export class StudioComponent implements OnInit {
       this.closeMenu(null)
     }
 
-    if (image && text) {
-      image!.setAttribute('src', templateAsset)
-      text!.innerHTML = option;
+    if(random) {
+      if(image && text) {
+        image!.setAttribute('src', templateAsset)
+        text!.innerHTML = option;
+      }
+    } else {
+      if(image && text) {
+        this.tempImage = image;
+        this.tempText = text;
+        this.tempOption = option;
+        this.tempAsset = templateAsset;
+        if(option !== 'Leather') {
+          image!.setAttribute('src', templateAsset)
+          text!.innerHTML = option;
+        }
+      } else {
+        if(this.tempImage) {
+          this.tempImage!.setAttribute('src', this.tempAsset)
+          this.tempText!.innerHTML = this.tempOption;
+          this.tempImage = null;
+        }
+      }
     }
   }
 
   updateConfiguration(option:string, type:string) {
-    console.log(option, type)
-
     if(type.includes('Helmet')) {
       this.currentHelmetConfiguration = this.updateConfigurationLogic(option, type, 'Helmet', this.currentHelmetConfiguration);
 
@@ -449,6 +465,7 @@ export class StudioComponent implements OnInit {
 
     let dyeColors = Array.from(this.dyes.keys());
     if(dyeColors.includes(option)) {
+      configuration.set('armorMaterial', "Leather")
       configuration.set('dyeColor', option)
     }
 
@@ -523,13 +540,19 @@ export class StudioComponent implements OnInit {
     return configuration;
   }
 
-  copyConfigurationUrl() {
+  copyConfigurationUrl(device:string) {
+    var button:any;
+    if(device === 'mobile') {
+      button = document.getElementById('copyConfigMobile');
+    } else {
+      button = document.getElementById('copyConfigDesktop');
+    }
+
     navigator.clipboard.writeText(this.configurationUrl);
-    let button = document.getElementById('copyConfig');
-    button!.innerHTML = "URL Copied!";
+    button!.textContent = "Copied!";
 
     setTimeout(function() {
-      button!.innerHTML = "Copy Configuration URL";
+      button!.textContent = "Copy URL";
     },1500)
 
     if(window.location.hostname != "localhost") {
@@ -569,42 +592,42 @@ export class StudioComponent implements OnInit {
 
       if(i == 0) {
         // HELMET
-        this.clickOption(randomSmithingTemplate, 'smithingTemplateHelmet');
-        this.clickOption(randomArmorMaterial, 'armorMaterialHelmet');
-        this.clickOption(randomTrimMaterial, 'trimMaterialHelmet');
+        this.clickOption(randomSmithingTemplate, 'smithingTemplateHelmet', true);
+        this.clickOption(randomArmorMaterial, 'armorMaterialHelmet', true);
+        this.clickOption(randomTrimMaterial, 'trimMaterialHelmet', true);
 
         if(randomArmorMaterial === 'Leather') {
-          this.clickOption(randomDyeColor, 'leatherHelmet');
+          this.clickOption(randomDyeColor, 'leatherHelmet', true);
         }
 
       } else if (i == 1) {
         // CHESTPLATE
-        this.clickOption(randomSmithingTemplate, 'smithingTemplateChestplate');
-        this.clickOption(randomArmorMaterial, 'armorMaterialChestplate');
-        this.clickOption(randomTrimMaterial, 'trimMaterialChestplate');
+        this.clickOption(randomSmithingTemplate, 'smithingTemplateChestplate', true);
+        this.clickOption(randomArmorMaterial, 'armorMaterialChestplate', true);
+        this.clickOption(randomTrimMaterial, 'trimMaterialChestplate', true);
 
         if(randomArmorMaterial === 'Leather') {
-          this.clickOption(randomDyeColor, 'leatherChestplate');
+          this.clickOption(randomDyeColor, 'leatherChestplate', true);
         }
 
       } else if (i == 2) {
         // LEGGINGS
-        this.clickOption(randomSmithingTemplate, 'smithingTemplateLeggings');
-        this.clickOption(randomArmorMaterial, 'armorMaterialLeggings');
-        this.clickOption(randomTrimMaterial, 'trimMaterialLeggings');
+        this.clickOption(randomSmithingTemplate, 'smithingTemplateLeggings', true);
+        this.clickOption(randomArmorMaterial, 'armorMaterialLeggings', true);
+        this.clickOption(randomTrimMaterial, 'trimMaterialLeggings', true);
 
         if(randomArmorMaterial === 'Leather') {
-          this.clickOption(randomDyeColor, 'leatherLeggings');
+          this.clickOption(randomDyeColor, 'leatherLeggings', true);
         }
 
       } else if (i == 3) {
         // BOOTS
-        this.clickOption(randomSmithingTemplate, 'smithingTemplateBoots');
-        this.clickOption(randomArmorMaterial, 'armorMaterialBoots');
-        this.clickOption(randomTrimMaterial, 'trimMaterialBoots');
+        this.clickOption(randomSmithingTemplate, 'smithingTemplateBoots', true);
+        this.clickOption(randomArmorMaterial, 'armorMaterialBoots', true);
+        this.clickOption(randomTrimMaterial, 'trimMaterialBoots', true);
 
         if(randomArmorMaterial === 'Leather') {
-          this.clickOption(randomDyeColor, 'leatherBoots');
+          this.clickOption(randomDyeColor, 'leatherBoots', true);
         }
       } 
     }

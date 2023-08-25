@@ -1,7 +1,7 @@
 <div class="w-full z-0 fixed h-full" (click) = "closeMenu($event)"></div>
 <div id='studio' class="wrapper w-screen flex flex-col bg-[#1A2428]">
     <div class="my-auto flex flex-row z-10">
-        <div class="studio md:mt-8 mt-2 mb-12 md:w-[820px] w-11/12 rounded-xl mx-auto relative flex flex-col md:flex-col shadow-2xl bg-[#C6C6C6] z-10 border-4 border-white">
+        <div class="studio lg:mt-[8vh] md:mt-8 mt-2 mb-12 md:w-[820px] w-11/12 rounded-xl mx-auto relative flex flex-col md:flex-col shadow-2xl bg-[#C6C6C6] z-10 border-4 border-white">
             <div class="flex md:flex-row w-full flex-col">
                 <div class="image sm:h-[560px] h-[340px] md:w-[400px] sm:pt-[25px] flex flex-col align-middle items-center" (click) = "closeMenu($event)">
                 
@@ -34,7 +34,7 @@
                                 <div class="menu-label">Smithing Templates</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let template of smithingTemplates | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateHelmet")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateHelmet", false)'> 
                                             <div>
                                                 <img src = '{{ template.value }}' class="menu-option-image"/>
                                             </div>
@@ -50,7 +50,7 @@
                             <div class="menu-label">Smithing Templates</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let template of smithingTemplates | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateChestplate")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateChestplate", false)'> 
                                             <div>
                                                 <img src = '{{ template.value }}' class="menu-option-image"/>
                                             </div>
@@ -66,7 +66,7 @@
                                 <div class="menu-label">Smithing Templates</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let template of smithingTemplates | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateLeggings")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateLeggings", false)'> 
                                             <div>
                                                 <img src = '{{ template.value }}' class="menu-option-image"/>
                                             </div>
@@ -82,7 +82,7 @@
                                 <div class="menu-label">Smithing Templates</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let template of smithingTemplates | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateBoots")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(template.key, "smithingTemplateBoots", false)'> 
                                             <div>
                                                 <img src = '{{ template.value }}' class="menu-option-image"/>
                                             </div>
@@ -98,7 +98,7 @@
                                 <div class="menu-label">Helmet Materials</div> 
                                 <div class="menu-options-container" id="helmetOptions">
                                     <div *ngFor = 'let helmet of helmetAssets | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(helmet.key, "armorMaterialHelmet")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(helmet.key, "armorMaterialHelmet", false)'> 
                                             <div>
                                                 <img src = '{{ helmet.value }}' class="menu-option-image"/>
                                             </div>
@@ -109,7 +109,7 @@
     
                                 <div class="menu-options-container hidden" id="leatherHelmetColorOptions">
                                     <div id = 'leatherHelmetColorOptions' *ngFor = 'let dye of dyes | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherHelmet")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherHelmet", false)'> 
                                             <div>
                                                 <img src = '{{ dye.value }}' class="menu-option-image"/>
                                             </div>
@@ -125,7 +125,7 @@
                                 <div class="menu-label">Chestplate Materials</div> 
                                 <div class="menu-options-container" id="chestplateOptions">
                                     <div *ngFor = 'let chestplate of chestplateAssets | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(chestplate.key, "armorMaterialChestplate")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(chestplate.key, "armorMaterialChestplate", false)'> 
                                             <div>
                                                 <img src = '{{ chestplate.value }}' class="menu-option-image"/>
                                             </div>
@@ -136,7 +136,7 @@
     
                                 <div class="menu-options-container hidden" id="leatherChestplateColorOptions">
                                     <div id = 'leatherChestplateColorOptions' *ngFor = 'let dye of dyes | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherChestplate")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherChestplate", false)'> 
                                             <div>
                                                 <img src = '{{ dye.value }}' class="menu-option-image"/>
                                             </div>
@@ -153,7 +153,7 @@
                                 <div class="menu-label">Leggings Materials</div> 
                                 <div class="menu-options-container" id="leggingsOptions">
                                     <div *ngFor = 'let leggings of leggingsAssets | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(leggings.key, "armorMaterialLeggings")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(leggings.key, "armorMaterialLeggings", false)'> 
                                             <div>
                                                 <img src = '{{ leggings.value }}' class="menu-option-image"/>
                                             </div>
@@ -164,7 +164,7 @@
     
                                 <div class="menu-options-container hidden" id="leatherLeggingsColorOptions">
                                     <div id = 'leatherLeggingsColorOptions' *ngFor = 'let dye of dyes | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherLeggings")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherLeggings", false)'> 
                                             <div>
                                                 <img src = '{{ dye.value }}' class="menu-option-image"/>
                                             </div>
@@ -181,7 +181,7 @@
                                 <div class="menu-label">Boots Materials</div> 
                                 <div class="menu-options-container" id="bootsOptions">
                                     <div *ngFor = 'let boots of bootsAssets | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(boots.key, "armorMaterialBoots")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(boots.key, "armorMaterialBoots", false)'> 
                                             <div>
                                                 <img src = '{{ boots.value }}' class="menu-option-image"/>
                                             </div>
@@ -192,7 +192,7 @@
     
                                 <div class="menu-options-container hidden" id="leatherBootsColorOptions">
                                     <div id = 'leatherBootsColorOptions' *ngFor = 'let dye of dyes | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherBoots")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(dye.key, "leatherBoots", false)'> 
                                             <div>
                                                 <img src = '{{ dye.value }}' class="menu-option-image"/>
                                             </div>
@@ -209,7 +209,7 @@
                                 <div class="menu-label">Trim Materials</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialHelmet")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialHelmet", false)'> 
                                             <div>
                                                 <img src = '{{ trimMaterial.value }}' class="menu-option-image"/>
                                             </div>
@@ -225,7 +225,7 @@
                                 <div class="menu-label">Trim Materials</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialChestplate")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialChestplate", false)'> 
                                             <div>
                                                 <img src = '{{ trimMaterial.value }}' class="menu-option-image"/>
                                             </div>
@@ -241,7 +241,7 @@
                                 <div class="menu-label">Trim Materials</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialLeggings")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialLeggings", false)'> 
                                             <div>
                                                 <img src = '{{ trimMaterial.value }}' class="menu-option-image"/>
                                             </div>
@@ -257,7 +257,7 @@
                                 <div class="menu-label">Trim Materials</div> 
                                 <div class="menu-options-container">
                                     <div *ngFor = 'let trimMaterial of trimMaterials | keyvalue'>
-                                        <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialBoots")'> 
+                                        <div class="menu-options-image-and-text" (click)='clickOption(trimMaterial.key, "trimMaterialBoots", false)'> 
                                             <div>
                                                 <img src = '{{ trimMaterial.value }}' class="menu-option-image"/>
                                             </div>
@@ -360,19 +360,19 @@
                             </div>
                         </div>
     
-                            <div class="flex flex-row sm:mt-2 md:mb-0 mt-2 sm:mb-10 justify-center sm:hidden text-center mb-3 text-sm">
-                                <div class="border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none ml-8 px-2 w-24" id="random" (click)="random()"> Random </div>
-                                <div class=" border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none px-2 w-20" (click)="resetEvent()"> Clear </div>
-                                <div class="border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none mr-8 px-2 w-24" id="copyConfig" (click)="copyConfigurationUrl()">Copy URL</div>
+                            <div class="max-w-[340px] w-full flex flex-row sm:mt-2 md:mb-0 mt-2 sm:mb-10 justify-center sm:hidden text-center mb-3 text-sm mx-auto">
+                                <div class="border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none ml-4 px-2 w-24" id="random" (click)="random()">Random</div>
+                                <div class="border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none px-2 w-24" id="copyConfigMobile" (click)='copyConfigurationUrl("mobile")'>Copy URL</div>
+                                <div class=" border-4 border-b-gray-700 border-r-gray-700 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none mr-4 px-2 w-24" (click)="resetEvent()">Clear All</div>
                             </div>
                     </div>
                 </div>
             </div>
 
             <div class="w-7/12 sm:flex hidden flex-row mx-auto text-center mt-2 mb-4 text-sm ">
-                <div class="border-4 border-b-gray-700 border-r-gray-700 w-28 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none" id="random" (click)="random()"> Random </div>
-                <div class="border-4 border-b-gray-700 border-r-gray-700 w-52 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none" id="copyConfig" (click)="copyConfigurationUrl()">Copy Configuration URL</div>
-                <div class=" border-4 border-b-gray-700 border-r-gray-700 w-28 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none" (click)="resetEvent()"> Clear All </div>
+                <div class="border-4 border-b-gray-700 border-r-gray-700 w-36 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none" id="random" (click)="random()">Random</div>
+                <div class="border-4 border-b-gray-700 border-r-gray-700 w-36 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none" id="copyConfigDesktop" (click)='copyConfigurationUrl("desktop")'>Copy URL</div>
+                <div class=" border-4 border-b-gray-700 border-r-gray-700 w-36 py-1 cursor-pointer mx-auto hover:bg-gray-300 select-none" (click)="resetEvent()">Clear All</div>
             </div>
         </div>
     </div>

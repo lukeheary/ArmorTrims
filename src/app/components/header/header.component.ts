@@ -26,21 +26,15 @@ export class HeaderComponent implements OnInit {
     legal!.classList.add('hidden');
   }
 
-  support() {
-    if(window.location.hostname != "localhost") {
-      firebase.analytics().logEvent('support', {});
-    }
-  }
-
   contact() {
     if(window.location.hostname != "localhost") {
       firebase.analytics().logEvent('contact', {});
     }
   }
 
-  server() {
+  support() {
     if(window.location.hostname != "localhost") {
-      firebase.analytics().logEvent('server', {});
+      firebase.analytics().logEvent('support', {});
     }
   }
 }

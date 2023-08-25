@@ -37,22 +37,22 @@
         "Wild": "Jungle Temple"
     },
     "Containers": {
-        "Coast": "The Coast smithing template can be found in Shipwrecks.",
-        "Dune": "The Dune smithing template can be found in Desert Pyramids.",
-        "Eye": "The Eye smithing template can be found in Strongholds.",
-        "Host": "The Host smithing template can be found in Suspicious Gravel and Suspicious Sand.",
-        "Raiser": "The Raiser smithing template can be found in Suspicious Gravel and Suspicious Sand.",
-        "Rib": "The Rib smithing template can be found in Nether Fortresses.",
-        "Sentry": "The Sentry smithing template can be found in chests in Pillager Outposts.",
-        "Shaper": "The Shaper smithing template can be found in Suspicious Gravel and Suspicious Sand.",
-        "Silence": "The Silence smithing template can be found in Ancient Cities.",
-        "Snout": "The Snout smithing template can be found in Bastion Remnants.",
-        "Spire": "The Spire smithing template can be found in End Cities.",
-        "Tide": "The Tide smithing template has a 20% chance of being dropped upon killing an Elder Guardian.",
-        "Vex": "The Vex smithing template can be found in Woodland Mansions.",
-        "Ward": "The Ward smithing template can be found in Ancient Cities.",
-        "Wayfinder": "The Wayfinder smithing template can be found in Suspicious Gravel and Suspicious Sand.",
-        "Wild": "The Wild smithing template can be found in Jungle Temples."
+        "Coast": "Found in Shipwrecks",
+        "Dune": "Found in Desert Pyramids",
+        "Eye": "Found in Strongholds",
+        "Host": "Found in Suspicious Gravel and Suspicious Sand",
+        "Raiser": "Found in Suspicious Gravel and Suspicious Sand",
+        "Rib": "Found in Nether Fortresses",
+        "Sentry": "Found in chests in Pillager Outposts",
+        "Shaper": "Found in Suspicious Gravel and Suspicious Sand",
+        "Silence": "Found in Ancient Cities",
+        "Snout": "Found in Bastion Remnants",
+        "Spire": "Found in End Cities",
+        "Tide": "20% chance of being dropped upon killing an Elder Guardian",
+        "Vex": "Found in Woodland Mansions",
+        "Ward": "Found in Ancient Cities",
+        "Wayfinder": "Found in Suspicious Gravel and Suspicious Sand",
+        "Wild": "Found in Jungle Temples"
     }, 
 
     "Duplication": {
